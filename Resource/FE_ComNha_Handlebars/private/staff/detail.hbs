@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="/css/private/staff.css">
+
+<div class="staff-detail">
+    <div class="title">
+        Thông tin nhân viên
+        <span></span>
+    </div>
+    <div class="staff-detail__content pt-2">
+        <a href="/comnha/staffs" class="text-danger">Trở lại</a>
+        <form id="detail-form" class="needs-validation pt-4" novalidate enctype="multipart/form-data" method="POST">
+            <div class="row">
+                {{!-- Ảnh --}}
+                <div class="col-12 col-lg-4">
+                    <div class="staff-detail__img">
+                        <div class="staff-detail__img-wrapper">
+                            <img id="staff-detail__img-view" src="/images/avatar/avatar2.jpg" alt="Avatar">
+                            <h5 class="mt-2 text-danger font-weight-bold">Nguyễn Trường Anh</h5>
+                        </div>
+                    </div>
+                </div>
+                {{!-- Thông tin --}}
+                <div class="col-12 col-lg-8 px-lg-0">
+                    {{!-- Thông tin cơ bản --}}
+                    <div class="staff-detail__group pb-2">
+                        <h5 class="font-italic staff-detail__group-title"><strong>Thông tin cơ bản:</strong></h5>
+                        <div class="row px-4">
+                            <div class="col-md-4 px-2 pb-3">
+                                <p class="mb-1"><strong>Mã nhân viên:</strong></p>
+                                <input type="text" class="w-100" value="NV0001" readonly>
+                            </div>
+                            <div class="col-md-4 px-2 pb-3">
+                                <p class="mb-1"><strong>Tên tài khoản:</strong></p>
+                                <input type="text" class="w-100" value="truonganh" readonly>
+                            </div>
+                            <div class="col-md-4 px-2 pb-3">
+                                <p class="mb-1"><strong>Chi nhánh:</strong></p>
+                                <input type="text" class="w-100" value="Hồ Chí Minh" readonly>
+                            </div>
+                            <div class="col-md-6 px-2 pb-3">
+                                <p class="mb-1"><strong>Chức vụ:</strong></p>
+                                <input type="text" class="w-100" value="Quản lý nhà hàng" readonly>
+                            </div>
+                            <div class="col-md-6 px-2 pb-3">
+                                <p class="mb-1"><strong>Mức lương:</strong></p>
+                                <input type="text" class="w-100" value="50.000.000đ" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- Thông tin liên hệ --}}
+                    <div class="staff-detail__group pb-2">
+                        <h5 class="font-italic staff-detail__group-title"><strong>Thông tin liên hệ:</strong></h5>
+                        <div class="row px-4">
+                            <div class="col-md-6 px-2 pb-3">
+                                <p class="mb-1"><strong>Số điện thoại:</strong></p>
+                                <input type="text" class="w-100" value="0399999999" readonly>
+                            </div>
+                            <div class="col-md-6 px-2 pb-3">
+                                <p class="mb-1"><strong>Email:</strong></p>
+                                <input type="text" class="w-100" value="truonganh@gmail.com" readonly>
+                            </div>
+                            <div class="col-12 px-2 pb-3">
+                                <p class="mb-1"><strong>Địa chỉ:</strong></p>
+                                <input type="text" class="w-100" value="Quận 7, Thành phố Hồ Chí Minh" 
+                                readonly>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- Lý lịch --}}
+                    <div class="staff-detail__group pb-2">
+                        <h5 class="font-italic staff-detail__group-title"><strong>Lý lịch:</strong></h5>
+                        <div class="row px-4">
+                            <div class="col-md-4 px-2 pb-3">
+                                <p class="mb-1"><strong>CMND/CCCD:</strong></p>
+                                <input type="text" class="w-100" value="1234567890" readonly>
+                            </div>
+                            <div class="col-md-4 px-2 pb-3">
+                                <p class="mb-1"><strong>Giới tính:</strong></p>
+                                <input type="text" class="w-100" value="Nam" readonly>
+                            </div>
+                            <div class="col-md-4 px-2 pb-3">
+                                <p class="mb-1"><strong>Ngày sinh:</strong></p>
+                                <input type="text" class="w-100" value="10/01/2001" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-2">
+                        <a href="/comnha/staffs/edit/1" type="reset" class="btn btn-outline-primary mr-2">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            Chỉnh sửa
+                        </a>
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-modal"
+                            data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                        >
+                            <i class="fa-solid fa-trash-can"></i>
+                            Xóa
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{!-- Model xóa --}}
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa nhân viên?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="delete-form" name="delete-form" method="POST"></form>
+
+<script>
+    $(document).ready(function () {
+        const deleteForm = document.getElementById('delete-form')
+        const btnDelete = document.getElementById('btn-confirm-delete')
+        const modalMessage = document.querySelector('.modal-body__message')
+        let id;
+
+        // When single button delete clicked in each course
+        $('#delete-modal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget)
+            id = button.data('id')
+            modalMessage.innerHTML = `Bạn có thật sự muốn xóa nhân viên: ${id} không?`
+        })
+
+        // When button delete clicked
+        btnDelete.onclick = function () {
+            deleteForm.action = ``
+            deleteForm.submit()
+        }
+    });
+</script>

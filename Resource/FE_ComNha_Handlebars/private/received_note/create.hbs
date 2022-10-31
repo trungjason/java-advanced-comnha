@@ -1,0 +1,191 @@
+<link rel="stylesheet" href="/css/private/received-note.css">
+
+<div class="received-note-create">
+    <div class="title">
+        Tạo phiếu nhập
+        <span></span>
+    </div>
+    <a href="/comnha/received-notes" class="text-danger d-inline-block pt-2">Trở lại</a>
+    <div class="container">
+        <div class="row pt-3">
+            <div class="col-12 col-lg-8 offset-lg-2">
+                <form id="create-form" class="needs-validation" novalidate>
+                    <div class="form-row">
+                        {{!-- Nhà cung cấp --}}
+                        <div class="col-12 mb-2">
+                            <label class="mb-1" for="supplier">Nhà cung cấp:</label>
+                            <select id="supplier" class="custom-select" name="supplier" required>
+                                <option value="">--Chọn nhà cung cấp--</option>
+                                <option value="NCC0001">Thực phẩm Tấn Tài</option>
+                                <option value="NCC0002">Thực phẩm Tiến Phát</option>
+                            </select>
+                            <div class="invalid-feedback">Vui lòng chọn nhà cung cấp!</div>
+                        </div>
+                        {{!-- Ngày nhập --}}
+                        <div class="col-md-6 mb-2">
+                            <label class="mb-1" for="received-date">Ngày nhập:</label>
+                            <input type="date" class="form-control" id="received-date" name="receivedDate" required>
+                            <div class="invalid-feedback">Vui lòng chọn ngày nhập!</div>
+                        </div>
+                        {{!-- Kho --}}
+                        <div class="col-md-6 mb-2">
+                            <label class="mb-1" for="warehouse">Kho:</label>
+                            <select id="warehouse" class="custom-select" name="warehouse" required>
+                                <option value="">--Chọn kho--</option>
+                                <option value="K0001">Hồ Chí Minh</option>
+                                <option value="K0002">Đà Nẵng</option>
+                                <option value="K0003">Hà Nội</option>
+                            </select>
+                            <div class="invalid-feedback">Vui lòng chọn chi nhánh!</div>
+                        </div>
+                        {{!-- Ghi chú --}}
+                        <div class="col-12 mb-2">
+                            <label class="mb-1" for="note">Ghi chú:</label>
+                            <textarea class="form-control" id="note" rows="5" name="note"
+                                placeholder="Nhập ghi chú"></textarea>
+                        </div>
+                        {{!-- Danh sách nhập nguyên vật liệu --}}
+                        <div class="col-12 mb-2 pt-2">
+                            <div class="d-flex justify-content-between align-items-center pb-2">
+                                <label>Chi tiết phiếu nhập:</label>
+                                <button id="btn-add-material" type="button" class="btn btn-info">Thêm</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-bordered table-hover table-light table received-note-create__table">
+                                    <thead>
+                                        <tr class="text-white" style="background-color: var(--primary-color);">
+                                            <th style="min-width: 160px;" class="text-center">Nguyên vật liệu</th>
+                                            <th style="min-width: 138px;" class="text-center">Số lượng</th>
+                                            <th style="min-width: 138px;" class="text-center">Đơn giá</th>
+                                            <th style="min-width: 80px;" class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="received-note-create__table-body">
+                                        <tr class="received-note-create__table-item">
+                                            <td class="text-center align-middle">
+                                                <select id="select-items" class="custom-select" required>
+                                                    <option value="" class="text-center">--Chọn NVL--</option>
+                                                    <option value="NVL0001">Gạo</option>
+                                                    <option value="NVL0002">Hành tây</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <input type="number" class="form-control" required>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <input type="number" class="form-control" required>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    data-tooltip="tooltip" data-placement="top" title="Xóa"
+                                                    data-toggle="modal" data-target="#delete-modal">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-2">
+                        {{!-- <button type="reset" class="btn btn-outline-primary mr-2" id="reset-btn">Nhập lại</button> --}}
+                        <button type="submit" class="btn btn-outline-success">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Model xóa --}}
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa nguyên vật liệu?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="delete-modal-body__message" class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            const createForm = document.getElementById('create-form')
+            const btnDelete = document.getElementById('btn-confirm-delete')
+            const deleteModalMessage = document.getElementById('delete-modal-body__message')
+            const btnAddMaterial = document.getElementById('btn-add-material')
+            let receivedItem
+            let name
+
+            createForm.addEventListener('submit', function (event) {
+                if (createForm.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                createForm.classList.add('was-validated');
+            }, false);
+
+            // Tooltip
+            $('[data-tooltip="tooltip"]').tooltip();
+
+            // When single button delete clicked in each course
+            $('#delete-modal').on('show.bs.modal', function (event) {
+                let button = $(event.relatedTarget)
+                receivedItem = button.closest('.received-note-create__table-item')
+                name = receivedItem.find('#select-items').children(':selected').text()
+                deleteModalMessage.innerHTML = `Bạn có thật sự muốn xóa nguyên vật liệu: ${name} không?`
+            })
+
+            // When button delete clicked
+            btnDelete.onclick = function () {
+                $('#delete-modal').modal('hide')
+                receivedItem.remove()
+                console.log('Xóa thành công')
+            }
+
+            // Sự kiện nhân vào nút Thêm để thêm 1 dòng vật liệu mới
+            $('#btn-add-material').click(function () {
+                $('#received-note-create__table-body').append(`
+                    <tr class="received-note-create__table-item">
+                        <td class="text-center align-middle">
+                            <select id="select-items" class="custom-select" required>
+                                <option value="" class="text-center">--Chọn NVL--</option>
+                                <option value="NVL0001">Gạo</option>
+                                <option value="NVL0002">Hành tây</option>
+                            </select>
+                        </td>
+                        <td class="text-center align-middle">
+                            <input type="number" class="form-control" required>
+                        </td>
+                        <td class="text-center align-middle">
+                            <input type="number" class="form-control" required>
+                        </td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-danger"
+                                data-tooltip="tooltip" data-placement="top" title="Xóa"
+                                data-toggle="modal" data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `)
+            })
+
+        }, false);
+    })();
+</script>

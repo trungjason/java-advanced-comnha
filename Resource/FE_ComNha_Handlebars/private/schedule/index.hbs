@@ -1,0 +1,430 @@
+<div class="schedule">
+    <div class="title">
+        Lịch hẹn
+        <span></span>
+    </div>
+    <div class="heading d-flex flex-column flex-md-row justify-content-md-between">
+        <div class="search d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
+            <a href="/comnha/schedules/create" type="button" class="btn btn-outline-success">Tạo lịch hẹn</a>
+        </div>
+        <div class="search d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
+            <label for="search-input">Tìm kiếm: </label>
+            <div class="search-wrapper">
+                <input id="search-input" class="search-input" type="text" placeholder="Nhập từ khóa">
+                <i class="fa-solid fa-magnifying-glass search-btn"></i>
+            </div>
+        </div>
+    </div>
+    <div class="content pt-5">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-light table">
+                <thead>
+                    <tr class="text-white" style="background-color: var(--primary-color);">
+                        <th style="min-width: 10px; width: 2%" class="text-center">ID</th>
+                        <th style="min-width: 120px; width: 15%" class="text-center">Lịch hẹn</th>
+                        <th style="min-width: 120px; width: 15%" class="text-center">Chi nhánh</th>
+                        <th style="min-width: 120px; width: 15%" class="text-center">Tình trạng</th>
+                        <th style="min-width: 100px; width: 15%" class="text-center text-nowrap">Số lượng khách</th>
+                        <th style="min-width: 200px; width: 30%" class="text-center">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/schedules/detail/LH0001" class="text-dark">LH0001</a>
+                        </td>
+                        <td class="text-center align-middle">20/04/2022</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">Chờ xử lý</td>
+                        <td class="text-center align-middle">4 người</td>
+                        <td class="text-center align-middle">
+                            <button type="button" class="btn btn-outline-success" data-tooltip="tooltip"
+                            data-placement="top" title="Tiếp nhận" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#accept-modal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-tooltip="tooltip"
+                            data-placement="top" title="Hủy" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#cancel-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <a href="/comnha/schedules/edit/LH0001" type="button" class="btn btn-outline-primary"
+                            data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                            data-placement="top" title="Xóa" data-toggle="modal" data-id="LH0001" data-img="" data-name=""
+                            data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-danger">Xem thêm</button>
+        </div>
+    </div>
+</div>
+
+{{!-- Model tiếp nhận --}}
+<div id="accept-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tiếp nhận lịch hẹn?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-success">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Model hủy --}}
+<div id="cancel-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa lịch hẹn?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-secondary">Xác nhận</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Model xóa --}}
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa lịch hẹn?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form id="delete-form" name="delete-form" method="POST"></form>
+
+<script>
+    $(document).ready(function () {
+        const deleteForm = document.getElementById('delete-form')
+        const btnDeleteCourse = document.getElementById('btn-confirm-delete')
+        const modalMessage = document.querySelector('.modal-body__message')
+        let id;
+
+        // Tooltip
+        $('[data-tooltip="tooltip"]').tooltip();
+
+        // When single button delete clicked in each course
+        $('#delete-modal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget)
+            id = button.data('id')
+            modalMessage.innerHTML = `Bạn có thật sự muốn xóa lịch hẹn: <strong>${id}</strong> không?`
+        })
+
+        // When button delete clicked
+        btnDeleteCourse.onclick = function () {
+            deleteForm.action = ``
+            deleteForm.submit()
+        }
+    });
+</script>

@@ -1,0 +1,13 @@
+.member-detail__group input {
+    outline: none;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    border-bottom: 1px solid var(--primary-color);
+    border-right: 1px solid var(--primary-color);
+}
+
+.member-detail__group-title {
+    text-decoration: underline;
+    margin-bottom: 12px;
+}

@@ -1,0 +1,93 @@
+<div class="schedule-create">
+    <div class="title">
+        Chỉnh sửa lịch hẹn
+        <span></span>
+    </div>
+    <div class="schedule-create__content pt-2">
+        <a href="/comnha/schedules/" class="text-danger">Trở lại</a>
+        <form class="needs-validation pt-4 px-md-5" novalidate method="POST">             
+            {{!-- Thông tin --}}
+            <div class="form-row">
+                {{!-- Chi nhánh --}}
+                <div class="col-12 mb-2">
+                    <label class="mb-1" for="name">Chi nhánh:</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                        value="Hồ Chí Minh" readonly required>
+                </div>
+                {{!-- Ngày hẹn --}}
+                <div class="col-md-4 mb-2">
+                    <label class="mb-1" for="date">Ngày hẹn:</label>
+                    <input type="date" class="form-control" id="date" name="date" placeholder="Chọn ngày hẹn"
+                        value="Kg" required>
+                    <div class="invalid-feedback">Vui lòng chọn ngày hẹn!</div>
+                </div>
+                {{!-- Thời gian --}}
+                <div class="col-md-4 mb-2">
+                    <label class="mb-1" for="time">Thời gian:</label>
+                    <input type="time" class="form-control" id="time" name="time"
+                        placeholder="Chọn thời gian" required>
+                    <div class="invalid-feedback">Vui lòng chọn thời gian!</div>
+                </div>
+                {{!-- Số lượng khách --}}
+                <div class="col-md-4 mb-2">
+                    <label class="mb-1" for="customer">Số lượng khách:</label>
+                    <input type="number" class="form-control" id="customer" name="customer"
+                        placeholder="Nhập số lượng khách" value="4" required>
+                    <div class="invalid-feedback">Vui lòng nhập số lượng khách!</div>
+                </div>
+                {{!-- Bàn ăn --}}
+                <div class="col-md-6 mb-2">
+                    <label class="mb-1" for="table">Bàn ăn:</label>
+                    <select id="table" class="custom-select" name="table" required>
+                        <option value="">--Chọn bàn ăn --</option>
+                        <option value="BA0001" selected>Bàn 1 (BA0001) - 4 người</option>
+                    </select>
+                    <div class="invalid-feedback">Vui lòng chọn bàn ăn!</div>
+                </div>
+                {{!-- Tình trạng --}}
+                <div class="col-md-6 mb-2">
+                    <label class="mb-1" for="status">Tình trạng:</label>
+                    <select id="status" class="custom-select" name="status" required>
+                        <option value="">--Chọn tình trạng --</option>
+                        <option value="wait" selected>Chờ xử lý</option>
+                        <option value="accept">Tiếp nhận</option>
+                        <option value="cancel">Hủy</option>
+                    </select>
+                    <div class="invalid-feedback">Vui lòng chọn tình trạng!</div>
+                </div>
+                {{!-- Nhu cầu --}}
+                <div class="col-12 mb-2">
+                    <label class="mb-1" for="need">Nhu cầu:</label>
+                    <textarea type="text" class="form-control" id="need" name="need"
+                        placeholder="Nhập mô tả chi tiết" rows="5" required>Phòng riêng.</textarea>
+                    <div class="invalid-feedback">Vui lòng chọn kho!</div>
+                </div>
+            </div>
+            <div class="d-flex flex-row justify-content-end mt-3">
+                <button type="reset" class="btn btn-outline-secondary mr-2">Nhập lại</button>
+                <button type="submit" class="btn btn-outline-success">Xác nhận</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

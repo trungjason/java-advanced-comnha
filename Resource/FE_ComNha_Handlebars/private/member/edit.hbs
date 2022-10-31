@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/css/private/member.css">
+
+<div class="member-edit">
+    <div class="title">
+        Chỉnh sửa hội viên
+        <span></span>
+    </div>
+    <a href="/comnha/members" class="text-danger d-inline-block pt-2">Trở lại</a>
+    <div class="row pt-3">
+        <div class="col-12 col-lg-8 offset-lg-2">
+            <form id="create-form" class="needs-validation" novalidate method="POST">
+                <div class="form-row">
+                    {{!-- Tên --}}
+                    <div class="col-12 mb-2">
+                        <label class="mb-1" for="name">Họ và tên:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên"
+                            required value="Nguyễn Trường Anh">
+                        <div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
+                    </div>
+                    {{!-- Số điện thoại --}}
+                    <div class="col-md-6 mb-2">
+                        <label class="mb-1" for="phone">Số điện thoại:</label>
+                        <input type="number" class="form-control" id="phone" name="phone"
+                            placeholder="Nhập số điện thoại" required value="0344889999">
+                        <div class="invalid-feedback">Vui lòng nhập số điện thoại!</div>
+                    </div>
+                    {{!-- Chi nhánh --}}
+                    <div class="col-md-6 mb-2">
+                        <label class="mb-1" for="branch">Chi nhánh:</label>
+                        <input type="text" id="branch" class="form-control" value="Hồ Chí Minh" readonly>
+                        {{!-- <select id="branch" class="custom-select" name="branch" required>
+                            <option value="">--Chọn chi nhánh--</option>
+                            <option value="CN001" selected>Hồ Chí Minh</option>
+                            <option value="CN002">Đà Nẵng</option>
+                            <option value="CN003">Hà Nội</option>
+                        </select>
+                        <div class="invalid-feedback">Vui lòng chọn chi nhánh!</div> --}}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <button type="button" class="btn btn-outline-info mr-2">Reset mật khẩu</button>
+                    <div>
+                        <button type="reset" class="btn btn-outline-primary mr-2">Nhập lại</button>
+                        <button type="submit" class="btn btn-outline-success">Lưu</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            const form = document.getElementById('create-form')
+
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        }, false);
+    })();
+</script>

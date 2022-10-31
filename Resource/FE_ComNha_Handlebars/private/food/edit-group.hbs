@@ -1,0 +1,43 @@
+<div class="food-group-edit">
+    <div class="title">
+        Chỉnh sửa nhóm món ăn
+        <span></span>
+    </div>
+    <div class="food-group-edit__content pt-2">
+        <a href="/comnha/foods" class="text-danger">Trở lại</a>
+        <form class="needs-validation pt-4" novalidate method="POST">             
+            {{!-- Thông tin --}}
+            <div class="d-flex flex-column px-5">
+                <label class="mb-1" for="name">Tên nhóm món ăn:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên nhóm món ăn"
+                    autocomplete="off" value="Lẩu" required>
+                <div class="invalid-feedback">Vui lòng nhập tên nhóm món ăn!</div>
+            </div>
+            <div class="d-flex flex-row justify-content-end mt-3 mr-5">
+                <button type="reset" class="btn btn-outline-secondary mr-2">Nhập lại</button>
+                <button type="submit" class="btn btn-outline-success">Sửa</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

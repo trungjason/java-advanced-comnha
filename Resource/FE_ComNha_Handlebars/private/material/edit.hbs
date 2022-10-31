@@ -1,0 +1,70 @@
+<div class="material-create">
+    <div class="title">
+        Chỉnh sửa nguyên vật liệu
+        <span></span>
+    </div>
+    <div class="material-create__content pt-2">
+        <a href="/comnha/materials/" class="text-danger">Trở lại</a>
+        <form class="needs-validation pt-4 px-md-5" novalidate method="POST">             
+            {{!-- Thông tin --}}
+            <div class="form-row">
+                {{!-- Tên --}}
+                <div class="col-12 mb-2">
+                    <label class="mb-1" for="name">Tên nguyên vật liệu:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên nguyên vật liệu"
+                        value="Gạo" required>
+                    <div class="invalid-feedback">Vui lòng nhập tên nguyên vật liệu!</div>
+                </div>
+                {{!-- Đơn vị --}}
+                <div class="col-md-6 mb-2">
+                    <label class="mb-1" for="unit">Đơn vị:</label>
+                    <input type="text" class="form-control" id="unit" name="unit" placeholder="Nhập đơn vị"
+                        value="Kg" required>
+                    <div class="invalid-feedback">Vui lòng nhập đơn vị!</div>
+                </div>
+                {{!-- Số lượng --}}
+                <div class="col-md-6 mb-2">
+                    <label class="mb-1" for="quantity">Số lượng:</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity"
+                        placeholder="Nhập số lượng" value="50" required>
+                    <div class="invalid-feedback">Vui lòng nhập số lượng!</div>
+                </div>
+                {{!-- Kho --}}
+                <div class="col-12 mb-2">
+                    <label class="mb-1" for="storage">Kho:</label>
+                    <select id="storage" class="custom-select" name="storage" required>
+                        <option value="">--Chọn kho--</option>
+                        <option value="K0001" selected>Hồ Chí Minh</option>
+                        <option value="K0002">Hà Nội</option>
+                    </select>
+                    <div class="invalid-feedback">Vui lòng chọn kho!</div>
+                </div>
+            </div>
+            <div class="d-flex flex-row justify-content-end mt-3">
+                <button type="reset" class="btn btn-outline-secondary mr-2">Nhập lại</button>
+                <button type="submit" class="btn btn-outline-success">Xác nhận</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

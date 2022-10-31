@@ -1,0 +1,296 @@
+<link rel="stylesheet" href="/css/private/staff.css">
+
+<div class="staff">
+    <div class="title">
+        Nhân viên
+        <span></span>
+    </div>
+    <div class="heading d-flex flex-column flex-md-row justify-content-md-between">
+        <a href="/comnha/staffs/create" type="button" class="btn btn-outline-success">Thêm nhân viên</a>
+        <div class="search d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
+            <label for="search-input">Tìm kiếm: </label>
+            <div class="search-wrapper">
+                <input id="search-input" class="search-input" type="text" placeholder="Nhập từ khóa">
+                <i class="fa-solid fa-magnifying-glass search-btn"></i>
+            </div>
+        </div>
+    </div>
+    <div class="content pt-5">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-light table">
+                <thead>
+                    <tr class="text-white" style="background-color: var(--primary-color);">
+                        <th style="min-width: 40px; width: 10%" class="text-center">ID</th>
+                        <th style="min-width: 200px; width: 30%" class="text-center">Họ và tên</th>
+                        <th style="min-width: 160px; width: 20%" class="text-center">Chức vụ</th>
+                        <th style="min-width: 140px; width: 20%" class="text-center">Chi nhánh</th>
+                        <th style="min-width: 180px; width: 20%" class="text-center">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0001</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Nguyễn Trường Anh</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0002</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Nguyễn Võ Hoàng Vũ</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Hà Nội</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0003</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Phạm Thái Học</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Đà Nẳng</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0001</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Nguyễn Trường Anh</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0002</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Nguyễn Võ Hoàng Vũ</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Hà Nội</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0003</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Phạm Thái Học</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Đà Nẳng</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0001</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Nguyễn Trường Anh</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0002</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Nguyễn Võ Hoàng Vũ</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Hà Nội</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0003</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Phạm Thái Học</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Đà Nẳng</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">NV0001</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/detail/1" class="text-dark">Nguyễn Trường Anh</a>
+                        </td>
+                        <td class="text-center align-middle">Quản lý nhà hàng</td>
+                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                        <td class="text-center align-middle">
+                            <a href="/comnha/staffs/edit/1" type="button" class="btn btn-outline-primary"
+                                data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                                data-placement="top" title="Xóa" data-toggle="modal" data-id="NV0001" data-img="" data-name="Nguyễn Trường Anh"
+                                data-target="#delete-modal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-danger">Xem thêm</button>
+        </div>
+    </div>
+</div>
+
+{{!-- Model xóa --}}
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa nhân viên?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="delete-form" name="delete-form" method="POST"></form>
+
+<script>
+    $(document).ready(function () {
+        const deleteForm = document.getElementById('delete-form')
+        const btnDelete = document.getElementById('btn-confirm-delete')
+        const modalMessage = document.querySelector('.modal-body__message')
+        let id;
+
+        // Tooltip
+        $('[data-tooltip="tooltip"]').tooltip();
+
+        // When single button delete clicked in each course
+        $('#delete-modal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget)
+            id = button.data('id')
+            modalMessage.innerHTML = `Bạn có thật sự muốn xóa nhân viên: ${id} không?`
+        })
+
+        // When button delete clicked
+        btnDelete.onclick = function () {
+            deleteForm.action = ``
+            deleteForm.submit()
+        }
+    });
+</script>

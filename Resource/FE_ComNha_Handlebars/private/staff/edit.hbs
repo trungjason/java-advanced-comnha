@@ -1,0 +1,164 @@
+<link rel="stylesheet" href="/css/private/staff.css">
+
+<div class="staff-edit">
+    <div class="title">
+        Chỉnh sửa nhân viên
+        <span></span>
+    </div>
+    <div class="staff-edit__content pt-2">
+        <a href="/comnha/staffs" class="text-danger">Trở lại</a>
+        <form id="edit-form" class="needs-validation pt-4" novalidate enctype="multipart/form-data" method="POST">
+            <div class="row">
+                {{!-- Ảnh --}}
+                <div class="col-12 col-lg-4">
+                    <div class="staff-edit__img">
+                        <div class="staff-edit__img-wrapper">
+                            <img id="staff-edit__img-view" src="/images/avatar/avatar2.jpg" alt="Avatar">
+                            <label for="staff-edit__img-input">
+                                <i class="fa-solid fa-camera"></i>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" id="staff-edit__img-input" class="form-control d-none" accept="image/*"
+                                name="image" required>
+                            <div class="invalid-feedback text-center mt-3">
+                                Vui lòng tải ảnh đại diện!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{!-- Thông tin --}}
+                <div class="col-12 col-lg-8 px-lg-0">
+                    <div class="form-row">
+                        {{!-- Tên --}}
+                        <div class="col-12 mb-2">
+                            <label class="mb-1" for="name">Họ và tên:</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên"
+                                required value="Nguyễn Trường Anh">
+                            <div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
+                        </div>
+                        {{!-- Email --}}
+                        <div class="col-md-6 mb-2">
+                            <label class="mb-1" for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email"
+                                required value="truonganh@gmail.com">
+                            <div class="invalid-feedback">Vui lòng nhập email!</div>
+                        </div>
+                        {{!-- Số điện thoại --}}
+                        <div class="col-md-6 mb-2">
+                            <label class="mb-1" for="phone">Số điện thoại:</label>
+                            <input type="number" class="form-control" id="phone" name="phone"
+                                placeholder="Nhập số điện thoại" required value="0399999999">
+                            <div class="invalid-feedback">Vui lòng nhập số điện thoại!</div>
+                        </div>
+                        {{!-- CMND/CCCD --}}
+                        <div class="col-md-4 mb-2">
+                            <label class="mb-1" for="identity">CMND/CCCD:</label>
+                            <input type="text" class="form-control" id="identity" name="identity"
+                                placeholder="Nhập CMND/CCCD" required value="1234567890">
+                            <div class="invalid-feedback">Vui lòng nhập CMND hoặc CCCD!</div>
+                        </div>
+                        {{!-- Giới tính --}}
+                        <div class="col-md-4 mb-2">
+                            <label class="mb-1" for="gender">Giới tính:</label>
+                            <select id="gender" class="custom-select" name="gender" required>
+                                <option value="">--Chọn giới tính--</option>
+                                <option value="male" selected>Nam</option>
+                                <option value="female">Nữ</option>
+                            </select>
+                            <div class="invalid-feedback">Vui lòng chọn giới tính!</div>
+                        </div>
+                        {{!-- Ngày sinh --}}
+                        <div class="col-md-4 mb-2">
+                            <label class="mb-1" for="birthday">Ngày sinh:</label>
+                            <input type="date" class="form-control" id="birthday" name="birthday" required value="01/10/2001">
+                            <div class="invalid-feedback">Vui lòng chọn ngày sinh!</div>
+                        </div>
+                        {{!-- Địa chỉ --}}
+                        <div class="col-12 mb-2">
+                            <label class="mb-1" for="address">Địa chỉ:</label>
+                            <input type="text" class="form-control" id="address" name="address"
+                                placeholder="Nhập địa chỉ" required value="Quận 7, Thành phố Hồ Chí Minh">
+                            <div class="invalid-feedback">Vui lòng nhập địa chỉ!</div>
+                        </div>
+                        {{!-- Lương--}}
+                        <div class="col-md-4 mb-2">
+                            <label class="mb-1" for="salary">Mức lương:</label>
+                            <input type="number" class="form-control" id="salary" name="salary"
+                                placeholder="Nhập mức lương" required value="50000000">
+                            <div class="invalid-feedback">Vui lòng nhập mức lương!</div>
+                        </div>
+                        {{!-- Chức vụ --}}
+                        <div class="col-md-4 mb-2">
+                            <label class="mb-1" for="role">Chức vụ:</label>
+                            <select id="role" class="custom-select" name="role" required>
+                                <option value="">--Chọn chức vụ--</option>
+                                <option value="restaurantManager" selected>Quản lý nhà hàng</option>
+                                <option value="warehouseManager">Quản lý kho</option>
+                                <option value="receptionist">Lễ tân</option>
+                                <option value="cashier">Thu ngân</option>
+                                <option value="waiter">Phục vụ</option>
+                            </select>
+                            <div class="invalid-feedback">Vui lòng chọn chức vụ!</div>
+                        </div>
+                        {{!-- Chi nhánh --}}
+                        <div class="col-md-4 mb-2">
+                            <label class="mb-1" for="branch">Chi nhánh:</label>
+                            <input id="branch" type="text" class="form-control" name="branch" value="Hồ Chí Minh" readonly>
+                            {{!-- <select id="branch" class="custom-select" name="branch" required>
+                                <option value="">--Chọn chi nhánh--</option>
+                                <option value="CN001" selected>Hồ Chí Minh</option>
+                                <option value="CN002">Đà Nẵng</option>
+                                <option value="CN003">Hà Nội</option>
+                            </select>
+                            <div class="invalid-feedback">Vui lòng chọn chi nhánh!</div> --}}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <button type="reset" class="btn btn-outline-info mr-2">Reset mật khẩu</button>
+                        <div>
+                            <button type="reset" class="btn btn-outline-primary mr-2" id="reset-btn">Nhập lại</button>
+                            <button type="submit" class="btn btn-outline-success">Lưu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            const form = document.getElementById('edit-form')
+            const imageInput = document.getElementById('staff-edit__img-input')
+            const imageView = document.getElementById('staff-edit__img-view')
+            const resetBtn = document.getElementById('reset-btn')
+
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+
+            imageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0]
+                const reader = new FileReader()
+
+                reader.onload = function(e) {
+                    imageView.setAttribute('src', e.target.result)
+                }
+
+                reader.readAsDataURL(file)
+            })
+
+            resetBtn.addEventListener('click', function(e) {
+                imageView.setAttribute('src', '/images/avatar/unknown.jpg')
+            })
+        }, false);
+    })();
+</script>

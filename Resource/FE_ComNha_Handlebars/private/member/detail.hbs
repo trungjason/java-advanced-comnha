@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="/css/private/member.css">
+
+<div class="member-detail">
+    <div class="title">
+        Thông tin hội viên
+        <span></span>
+    </div>
+    <a href="/comnha/members" class="text-danger pt-2 d-inline-block">Trở lại</a>
+    <div class="row pt-4">
+        <div class="col-12 col-lg-10 offset-lg-1 px-lg-0">
+            <div class="member-detail__group pb-2">
+                <h5 class="font-italic member-detail__group-title"><strong>Thông tin cơ bản:</strong></h5>
+                <div class="row px-4">
+                    <div class="col-md-4 px-2 pb-3">
+                        <p class="mb-1"><strong>Tên hội viên:</strong></p>
+                        <input type="text" class="w-100" value="Nguyễn Trường Anh" readonly>
+                    </div>
+                    <div class="col-md-4 px-2 pb-3">
+                        <p class="mb-1"><strong>Số điện thoại:</strong></p>
+                        <input type="text" class="w-100" value="0344889999" readonly>
+                    </div>
+                    <div class="col-md-4 px-2 pb-3">
+                        <p class="mb-1"><strong>Chi nhánh:</strong></p>
+                        <input type="text" class="w-100" value="Hồ Chí Minh" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="member-detail__group pb-2">
+                <h5 class="font-italic member-detail__group-title"><strong>Chi tiêu:</strong></h5>
+                <div class="row px-4">
+                    <div class="col-12 px-2 pb-3">
+                        <span class="mb-1 mr-2"><strong>Tổng chi tiêu:</strong></span>
+                        <h4 class="d-inline font-italic text-danger"><strong>9.000.000đ</strong></h4>
+                    </div>
+                    <div class="col-12 px-2 pb-3">
+                        <span class="mb-1 mr-2"><strong>Chiết khấu:</strong></span>
+                        <h4 class="d-inline font-italic text-danger"><strong>5%</strong></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-2">
+                <a href="/comnha/members/edit/0344889999" type="reset" class="btn btn-outline-primary mr-2">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Chỉnh sửa
+                </a>
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-modal"
+                    data-id="0344889999" data-name="Nguyễn Trường Anh">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Xóa
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Model xóa --}}
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa hội viên?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="delete-form" name="delete-form" method="POST"></form>
+
+<script>
+    $(document).ready(function () {
+        const deleteForm = document.getElementById('delete-form')
+        const btnDelete = document.getElementById('btn-confirm-delete')
+        const modalMessage = document.querySelector('.modal-body__message')
+        let id;
+
+        // When single button delete clicked in each course
+        $('#delete-modal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget)
+            id = button.data('id')
+            modalMessage.innerHTML = `Bạn có thật sự muốn xóa hội viên: ${id} không?`
+        })
+
+        // When button delete clicked
+        btnDelete.onclick = function () {
+            deleteForm.action = ``
+            deleteForm.submit()
+        }
+    });
+</script>

@@ -1,0 +1,204 @@
+<link rel="stylesheet" href="/css/private/received-note.css">
+
+<div class="received-note-detail">
+    <div class="title">
+        Chi tiết phiếu nhập
+        <span></span>
+    </div>
+    <a href="/comnha/received-notes" class="text-danger d-inline-block pt-2">Trở lại</a>
+    <div class="col-12 col-md-6 offset-md-3 pt-2">
+        <div class="received-note-detail__heading">
+            <h5 class="text-center"><strong>Nhà hàng CƠM NHÀ</strong></h5>
+            <h6 class="text-center"><strong>Phiếu nhập</strong></h6>
+        </div>
+        <div class="received-note-detail__content">
+            {{!-- Thông tin cơ bản hóa đơn --}}
+            <span></span>
+            <div class="px-2">
+                <div class="d-flex justify-content-between pb-1">
+                    <span class="d-inline-block" style="width: 45%;">Mã phiếu nhập:</span>
+                    <span class="text-right">PN0001</span>
+                </div>
+                <div class="d-flex justify-content-between pb-1">
+                    <span class="d-inline-block" style="width: 45%;">Người tạo:</span>
+                    <span class="text-right">Nguyễn Trường Anh</span>
+                </div>
+                <div class="d-flex justify-content-between pb-1">
+                    <span class="d-inline-block" style="width: 45%;">Chi nhánh:</span>
+                    <span class="text-right">Hồ Chí Minh</span>
+                </div>
+                <div class="d-flex justify-content-between pb-1">
+                    <span class="d-inline-block" style="width: 45%;">Ngày nhập:</span>
+                    <span class="text-right">02/02/2021</span>
+                </div>
+            </div>
+            {{!-- Hình thức thanh toán hóa đơn --}}
+            <span></span>
+            <div class="px-2">
+                <div class="d-flex justify-content-between pb-1">
+                    <span class="d-inline-block" style="width: 45%;">Mã nhà cung cấp:</span>
+                    <span class="text-right">NCC0001</span>
+                </div>
+                <div class="d-flex justify-content-between pb-1">
+                    <span class="d-inline-block" style="width: 45%;">Tên nhà cung cấp:</span>
+                    <span class="text-right">Thực phẩm Tiến Phát</span>
+                </div>
+                <div class="d-flex justify-content-between pb-1">
+                    <span class="d-inline-block" style="width: 45%;">Số điện thoại:</span>
+                    <span class="text-right">0399999999</span>
+                </div>
+                <div class="d-flex justify-content-between pb-1">
+                    <span class="d-inline-block" style="width: 45%;">Địa chỉ:</span>
+                    <span class="text-right">Quận 7, Tp. Hồ Chí Minh</span>
+                </div>
+            </div>
+            {{!-- Chi tiết các món ăn trong món ăn --}}
+            <span></span>
+            <div class="px-2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%">NVL</th>
+                            <th style="width: 20%" class="text-center">SL</th>
+                            <th style="width: 20%" class="text-center">Đơn vị</th>
+                            <th style="width: 30%" class="text-right">Số tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p class="mb-0">Gạo</p>
+                                <p class="mb-0 font-italic">15.000</p>
+                            </td>
+                            <td class="text-center">10</td>
+                            <td class="text-center">kg</td>
+                            <td class="text-right">150.000</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="mb-0">Hành tây</p>
+                                <p class="mb-0 font-italic">45.000</p>
+                            </td>
+                            <td class="text-center">10</td>
+                            <td class="text-center">kg</td>
+                            <td class="text-right">450.000</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="mb-0">Bia 333</p>
+                                <p class="mb-0 font-italic">450.000</p>
+                            </td>
+                            <td class="text-center">10</td>
+                            <td class="text-center">thùng</td>
+                            <td class="text-right">4.500.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {{!-- Tổng thành tiền --}}
+            <span></span>
+            <div class="px-2">
+                <div class="d-flex justify-content-between pb-1">
+                    <strong>Tổng:</strong>
+                    <strong>5.100.000đ</strong>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center pt-4">
+                <a href="/comnha/received-notes/edit/PN0001" type="button" class="mx-1 btn btn-outline-primary">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Chỉnh sửa
+                </a>
+                <button type="button" class="mx-1 btn btn-outline-danger" data-toggle="modal" data-id="PN0001"
+                    data-target="#delete-modal">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Xóa
+                </button>
+                <button type="button" class="mx-1 btn btn-outline-info" data-toggle="modal" data-id="PN0001"
+                    data-target="#print-modal">
+                    <i class="fa-solid fa-print"></i>
+                    In
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Model xóa --}}
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa phiếu nhập?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="delete-modal-body__message" class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="delete-form" name="delete-form" method="POST"></form>
+
+{{!-- Model in --}}
+<div id="print-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">In phiếu nhập?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="print-modal-body__message" class="modal-body__message">Do you want to print ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-print" type="button" class="btn btn-success">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        const deleteForm = document.getElementById('delete-form')
+        const btnDelete = document.getElementById('btn-confirm-delete')
+        const deleteModalMessage = document.getElementById('delete-modal-body__message')
+        const btnPrint = document.getElementById('btn-confirm-print')
+        const printModalMessage = document.getElementById('print-modal-body__message')
+
+        let id;
+
+        // When single button delete clicked in each course
+        $('#delete-modal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget)
+            id = button.data('id')
+            deleteModalMessage.innerHTML = `Bạn có thật sự muốn xóa phiếu nhập: ${id} không?`
+        })
+
+        // When button delete clicked
+        btnDelete.onclick = function () {
+            deleteForm.action = ``
+            deleteForm.submit()
+        }
+
+        $('#print-modal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget)
+            id = button.data('id')
+            printModalMessage.innerHTML = `Bạn có thật sự muốn in phiếu nhập: ${id} không?`
+        })
+
+        btnPrint.onclick = function () {
+            $('#print-modal').modal('hide')
+            console.log('In phiếu nhập thành công')
+        }
+    });
+</script>

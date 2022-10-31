@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="/css/private/supplier.css">
+
+<div class="supplier-create">
+    <div class="title">
+        Thêm nhà cung cấp
+        <span></span>
+    </div>
+    <a href="/comnha/suppliers" class="text-danger d-block pt-2">Trở lại</a>
+    <div class="row pt-3">
+        <div class="col-12 col-lg-8 offset-lg-2">
+            <form id="create-form" class="needs-validation" novalidate method="POST">
+                <div class="form-row">
+                    {{!-- Tên --}}
+                    <div class="col-12 mb-2">
+                        <label class="mb-1" for="name">Tên nhà cung cấp:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên nhà cung cấp"
+                            required>
+                        <div class="invalid-feedback">Vui lòng nhập tên nhà cung cấp!</div>
+                    </div>
+                    {{!-- Số điện thoại --}}
+                    <div class="col-md-6 mb-2">
+                        <label class="mb-1" for="phone">Số điện thoại:</label>
+                        <input type="number" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại"
+                            required>
+                        <div class="invalid-feedback">Vui lòng nhập số điện thoại!</div>
+                    </div>
+                    {{!-- Chi nhánh --}}
+                    <div class="col-md-6 mb-2">
+                        <label class="mb-1" for="branch">Chi nhánh:</label>
+                        <select id="branch" class="custom-select" name="branch" required>
+                            <option value="">--Chọn chi nhánh--</option>
+                            <option value="CN001">Hồ Chí Minh</option>
+                            <option value="CN002">Đà Nẵng</option>
+                            <option value="CN003">Hà Nội</option>
+                        </select>
+                        <div class="invalid-feedback">Vui lòng chọn chi nhánh!</div>
+                    </div>
+                    {{!-- Địa chỉ --}}
+                    <div class="col-12 mb-2">
+                        <label class="mb-1" for="address">Địa chỉ:</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ"
+                            required>
+                        <div class="invalid-feedback">Vui lòng nhập địa chỉ!</div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-2">
+                    <button type="reset" class="btn btn-outline-primary mr-2" id="reset-btn">Nhập lại</button>
+                    <button type="submit" class="btn btn-outline-success">Xác nhận</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            const form = document.getElementById('create-form')
+
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        }, false);
+    })();
+</script>
