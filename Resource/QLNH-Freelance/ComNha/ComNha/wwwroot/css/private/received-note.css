@@ -1,0 +1,32 @@
+.received-note-detail__heading {
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+.received-note-detail__content > span {
+    display: block;
+    width: 100%;
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    margin: 8px 0;
+}
+
+.received-note-detail__content {
+    font-size: 14px;
+}
+
+.received-note-detail__content .table th,
+.received-note-detail__content .table td {
+    border: none;
+    padding: 4px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .received-note-detail__content .table th {
+        background-color: transparent;
+    }
+}
+
+.received-note-create__table td,
+.received-note-edit__table td {
+    padding: 4px;
+}

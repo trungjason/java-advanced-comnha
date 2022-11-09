@@ -1,0 +1,161 @@
+@{
+    ViewData["Title"] = "Tạo nguyên vật liệu";
+    Layout = "~/Views/Shared/_Layout_Private.cshtml";
+}
+
+<div class="material-create">
+    <div class="title">
+        Thêm nguyên vật liệu
+        <span></span>
+    </div>
+    <div class="material-create__content pt-2">
+        <a href="/comnha/materials" class="text-danger">Trở lại</a>
+        <form id="create-form" class="needs-validation pt-4 px-md-5" novalidate method="POST">             
+         
+            <div class="form-row">
+
+                <div class="col-12 mb-2">
+                    <label class="mb-1" for="name">Tên nguyên vật liệu:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên nguyên vật liệu"
+                        value=""   required>
+                </div>
+
+                <div class="col-md-12 mb-2">
+                    <label class="mb-1" for="quantity">Tình trạng:</label>
+                    <input type="text" class="form-control" id="state" name="state"
+                        placeholder="Nhập tình trạng" value="" required>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <label class="mb-1" for="unit">Đơn giá:</label>
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Nhập đơn giá"
+                        value="" required>
+                </div>
+                              
+                <div class="col-md-3 mb-2">
+                    <label class="mb-1" for="unit">Đơn vị:</label>
+                    <input type="text" class="form-control" id="unit" name="unit" placeholder="Nhập đơn vị"
+                        value=""   required>
+                </div>
+             
+                <div class="col-md-3 mb-2">
+                    <label class="mb-1" for="quantity">Số lượng:</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity"
+                        placeholder="Nhập số lượng" value=""   required>
+                </div>
+   
+                
+            </div>
+
+            <div id="alert-message" class="text-danger d-none"
+                    style="font-size: 100%; margin-top: 0.25rem; margin-bottom: 0.25rem; width: 100%">
+                    Mật khẩu xác thực không trùng khớp!
+                </div>
+
+            <div class="d-flex flex-row justify-content-end mt-3">
+                <button type="reset" class="btn btn-outline-secondary mr-2">Nhập lại</button>
+                <button type="submit" class="btn btn-outline-success">Thêm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    form.classList.add('was-validated');
+
+                    const material_data = $("#create-form").serializeArray();
+                    console.log(material_data);
+
+                    if ( material_data.length != 6 ){
+                        return;
+                    }
+
+                    if (material_data[0]["value"].trim() === '' ||
+                        material_data[1]["value"].trim() === '' ||
+                        material_data[2]["value"].trim() === '' ||
+                        material_data[3]["value"].trim() === '' ||
+                        material_data[4]["value"].trim() === '' 
+                    ) {
+                        showError("Vui lòng nhập đầy đủ thông tin !");
+                        return;
+                    }
+
+                  
+                    let API_URL = `https://localhost:5556/api/comnha/create-material`;
+                    const options = {
+                        credentials: 'same-origin',
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json;charset=UTF-8'
+                        },
+                        body: JSON.stringify({
+                            maNguyenVatLieu: "string",
+                            tenNguyenVatLieu: material_data[0]["value"],
+                            donGia: parseFloat(material_data[2]["value"]),
+                            donVi: material_data[3]["value"],
+                            tinhTrang: material_data[1]["value"],
+                            soLuongTonKho: parseInt(material_data[4]["value"])
+                        })
+                    }
+
+                    fetch(API_URL, options)
+                        .then(json_result => {
+                            return json_result.json();
+                        })
+                        .then(result => {
+                            console.log(result);
+                            if ( result.status ){
+                                showSuccess(result.message);
+                                form.reset();
+                            } else {
+                                showError(result.message);
+                            } 
+                        })
+                        .catch(error => {
+                                
+                        })
+                }, false);
+            });
+
+
+        }, false);
+    })();
+
+    const alert = $("#alert-message");
+
+        function showError(message){
+            alert.removeClass("text-success");
+            alert.removeClass("text-danger");
+            alert.removeClass("d-none");
+
+            alert.addClass("text-danger");
+
+            alert.html(message);
+        }
+
+        function showSuccess(message){
+            alert.removeClass("text-success");
+            alert.removeClass("text-danger");
+            alert.removeClass("d-none");
+
+            alert.addClass("text-success");
+
+            alert.html(message);
+        }
+</script>
+}

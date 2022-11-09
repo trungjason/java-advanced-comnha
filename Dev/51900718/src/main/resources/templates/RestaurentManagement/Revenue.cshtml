@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewData["Title"] = "Revenue";
+    Layout = "~/Views/Shared/_Layout_Private.cshtml";
+}
+
+<div class="revenue">
+    <div class="title">
+        Doanh thu
+        <span></span>
+    </div>
+    <div class="heading d-flex flex-column flex-md-row justify-content-md-between">
+        <div class="d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
+            <label class="mr-sm-2 text-nowrap" for="CustomSelect">Chọn doanh thu theo:</label>
+            <select class="custom-select mr-sm-2 w-md-50" name="statictial-method" id="CustomSelect">
+                <option value="day" selected>Ngày</option>
+                <option value="month">Tháng</option>
+                <option value="year">Năm</option>
+            </select>
+        </div>
+
+        <div class="d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
+            <label class="mr-sm-2 text-nowrap" for="time">Từ ngày:</label>
+            <input type="date" id="fromTime" name="fromTime" class="w-md-50">
+        </div>
+
+        <div class="d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
+            <label class="mr-sm-2 text-nowrap" for="time">Đến ngày:</label>
+            <input type="date" id="toTime" name="toTime" class="w-md-50">
+        </div>
+
+        <div class="d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
+            @*<label class="mr-sm-2 text-nowrap" for="CustomSelect">Chọn chi nhánh:</label>
+            <select class="custom-select mr-sm-2 w-md-50" id="CustomSelect">
+                <option selected>Hồ Chí Minh</option>
+                <option>Hà Nội</option>
+            </select>*@
+            <button id="view-revenue" type="button" class="btn btn-success">Thống kê</button>
+        </div>
+    </div>
+    <div class="content pt-5">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-light table">
+                <thead>
+                    <tr class="text-white" style="background-color: var(--primary-color);">
+                        <th style="min-width: 40px; width: 15%" class="text-center">Mã Hóa Đơn</th>
+                        <th style="min-width: 100px; width: 15%" class="text-center">Ngày</th>
+                        <th style="min-width: 100px; width: 15%" class="text-center">Giờ</th>
+                        <th style="min-width: 230px; width: 30%" class="text-center">Người tạo</th>
+                        <th style="min-width: 230px; width: 30%" class="text-center">Số tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-end mb-2">
+            <strong id="total-income">Tổng tiền: 0 VNĐ</strong>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-danger">Xem thêm</button>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+      // JQuery
+      $(document).ready( function() {
+        $('#fromTime').val(getToday());
+        $('#toTime').val(getToday());
+
+
+          let API_URL = "https://localhost:5556/api/comnha/revenue";
+          const options = {
+            credentials: 'same-origin',
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=UTF-8',
+            }
+            //,
+            //body: JSON.stringify({
+            //    toTime: username,
+            //    password: password
+            //})
+        };
+
+         document.querySelector("#view-revenue").addEventListener("click", (e)=>{
+            const fromTime = document.querySelector("#fromTime").value;
+            const toTime = document.querySelector("#toTime").value;
+
+            const API = API_URL + `?fromTime=${fromTime}&toTime=${toTime}`;
+            console.log(API);
+            fetch(API, options)
+                .then(json_result => {
+                    return json_result.json();
+                })
+                .then(result => {
+                    console.log(result);
+                    if ( result.status ){
+                        let revenue_table = ``;
+                        let total = 0;
+
+                        for (let i = 0; i < result.data.length; i = i + 1){
+                            let bill = result.data[i];
+
+                            revenue_table += `<tr>
+                                <td class="text-center align-middle">${bill['maHoaDon']}</td>
+                                <td class="text-center align-middle">${formatDate(new Date(bill['thoiGianThanhToan']))}</td>
+                                <td class="text-center align-middle">${formatTime(new Date(bill['thoiGianThanhToan']))}</td>
+                                <td class="text-center align-middle">${bill['tenNhanVien']}</td>
+                                <td class="text-center align-middle">${numberWithCommas(bill['tongTien'])} VNĐ</td>
+                            </tr>`;
+
+                            total += parseFloat(bill['tongTien']);
+                        }
+
+                        for (let i = 0; i < result.data1.length; i = i + 1){
+                            let bill = result.data1[i];
+
+                            revenue_table += `<tr>
+                                <td class="text-center align-middle">${bill['maHoaDon']}</td>
+                                <td class="text-center align-middle">${formatDate(new Date(bill['thoiGianThanhToan']))}</td>
+                                <td class="text-center align-middle">${formatTime(new Date(bill['thoiGianThanhToan']))}</td>
+                                <td class="text-center align-middle">${bill['tenNhanVien']}</td>
+                                <td class="text-center align-middle">${numberWithCommas(bill['tongTien'])} VNĐ</td>
+                            </tr>`;
+
+                            total += parseFloat(bill['tongTien']);
+                        }
+                        
+                        document.querySelector("div.content table tbody").innerHTML = revenue_table;
+                        document.querySelector("#total-income").textContent = `Tổng tiền: ${numberWithCommas(total)} VNĐ`;
+                    }
+                })
+                .catch(error => {
+                    //fadeError(error);
+                })
+        });
+            
+      });
+  
+      function getToday(){
+	    const local = new Date();
+        local.setMinutes(local.getMinutes() - local.getTimezoneOffset());
+	    return local.toJSON().slice(0,10);
+      }
+
+      function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+    }
+
+    function formatDate(date) {
+        return [
+        padTo2Digits(date.getDate()),
+        padTo2Digits(date.getMonth() + 1),
+        date.getFullYear(),
+        ].join('/');
+    }
+
+     function formatTime(date) {
+        return [
+        padTo2Digits(date.getHours()),
+        padTo2Digits(date.getMinutes()),
+        date.getSeconds(),
+        ].join(':');
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+      
+      
+    </script>
+}
