@@ -1,0 +1,158 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Nhanvien
+@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout_Private.cshtml";
+    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+
+
+@section Stylesheets {
+  
+<link rel="stylesheet" href="~/css/calendar.css">
+<link rel="stylesheet" href="~/css/private/home.css">
+
+}
+
+<div class="home">
+    <div class="home-heading">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <img src="~/images/family.jpg" alt="Img">
+                <h4 class="home-heading__title">Cơm Nhà</h4>
+                <p class="home-heading__logan">-Hương vị của tình thân-</p>
+            </div>
+            <div class="col-12 offset-md-3 col-md-6 offset-lg-0 col-lg-4 pb-4">
+                <div id="calendar">
+                    <div id="calendar_header"><i class="fa-solid fa-angle-left"></i>
+                        <h1></h1><i class="fa-solid fa-angle-right"></i>
+                    </div>
+                    <div id="calendar_weekdays">1</div>
+                    <div id="calendar_content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title">
+        Thông tin tài khoản
+        <span></span>
+    </div>
+    <div class="home-info">
+        <div class="row">           
+            <div class="col-12 col-lg-3 d-flex justify-content-center">
+                <img src="~/images/avatar/unknown.jpg" alt="Avatar">
+            </div>
+
+
+            <div class="col-12 col-lg-9 p-0">
+                <div class="home-info__group d-flex justify-content-center">
+                    <div class="row w-100">
+                        <div class="col-12 col-md-4 px-1 pb-3">
+                            <p><strong>Mã nhân viên:</strong></p>
+                            <input id="staff-id" type="text" value="@Model.MaNhanVien" disabled readonly>
+                        </div>
+                        <div class="col-12 col-md-8 px-1 pb-3">
+                            <p><strong>Tên nhân viên:</strong></p>
+                            <input id="staff-name" type="text" value="@Model.TenNhanVien" disabled readonly>
+                        </div>
+                        <div class="col-12 col-md-4 px-1 pb-3">
+                            <p><strong>Chức vụ:</strong></p>
+                            <input id="staff-role" type="text" value="@Model.ChucVu" disabled readonly>
+                        </div>
+                        <div class="col-12 col-md-3 px-1 pb-3">
+                            <p><strong>Số điện thoại:</strong></p>
+                            <input id="staff-phone-number" type="text" value="@Model.SoDienThoai" disabled readonly>
+                        </div>
+
+                        <div class="col-12 col-md-5 px-1 pb-3">
+                            <p><strong>Email:</strong></p>
+                            <input id="staff-email" type="email" value="@Model.Email" disabled readonly>
+                        </div>
+
+                        <div class="col-12 col-md-4 px-1 pb-3">
+                            <p><strong>Lương:</strong></p>
+                            <input id="staff-salary" type="text" value="@Model.Luong.ToString("#,###", format.NumberFormat)đ" disabled readonly>
+                        </div>
+
+                        <div class="col-12 col-md-8 px-1 pb-3">
+                            <p><strong>Địa chỉ:</strong></p>
+                            <input id="staff-address" type="text" value="@Model.DiaChi" disabled readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @*<script>
+        // JQuery
+      $(document).ready( function() {         
+          const staffID = document.querySelector("#staff-id").value;
+           
+          let API_URL = `https://localhost:5556/api/comnha/get-staff/${staffID}`;
+          const options = {
+            credentials: 'same-origin',
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=UTF-8'
+            }
+          }
+
+        fetch(API_URL, options)
+            .then(json_result => {
+                return json_result.json();
+            })
+            .then(result => {
+                console.log(result);
+                if ( result.status ){
+                    document.querySelector("#staff-name").value = result.data['tenNhanVien'];
+                    document.querySelector("#staff-role").value = result.data['chucVu'];
+                    document.querySelector("#staff-phone-number").value = result.data['soDienThoai'];
+                    document.querySelector("#staff-email").value = result.data['email'];
+                    document.querySelector("#staff-salary").value = numberWithCommas(result.data['luong']) + " VNĐ";
+                    document.querySelector("#staff-address").value = result.data['diaChi'];
+
+                    document.querySelector("#header-staff-name").innerHTML = result.data['tenNhanVien'];
+                }
+            })
+            .catch(error => {
+                //fadeError(error);
+            })
+      });
+  
+      function getToday(){
+	    const local = new Date();
+        local.setMinutes(local.getMinutes() - local.getTimezoneOffset());
+	    return local.toJSON().slice(0,10);
+      }
+
+      function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+    }
+
+    function formatDate(date) {
+        return [
+        padTo2Digits(date.getDate()),
+        padTo2Digits(date.getMonth() + 1),
+        date.getFullYear(),
+        ].join('/');
+    }
+
+     function formatTime(date) {
+        return [
+        padTo2Digits(date.getHours()),
+        padTo2Digits(date.getMinutes()),
+        date.getSeconds(),
+        ].join(':');
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    </script>*@
+}

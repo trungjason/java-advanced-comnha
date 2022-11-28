@@ -1,0 +1,185 @@
+@using System.Globalization
+@{
+    ViewData["Title"] = "Chi tiết lịch hẹn";
+    Layout = "~/Views/Shared/_Layout_Private.cshtml";
+
+    Lichhen lichhen = null;
+    if ( ViewData.ContainsKey("DetailSchedule") && ViewData["DetailSchedule"] != null)
+    {
+        lichhen = ViewData["DetailSchedule"] as Lichhen;
+    };
+
+    Khachhang khachhang = null;
+    if ( ViewData.ContainsKey("Customer") && ViewData["Customer"] != null)
+    {
+        khachhang = ViewData["Customer"] as Khachhang;
+    };
+}
+
+<div class="schedule-create">
+    <div class="title">
+        Chi tiết lịch hẹn
+        <span></span>
+    </div>
+    <div class="schedule-create__content pt-2">
+        <a href="/comnha/schedules/" class="text-danger">Trở lại</a>
+        <form class="needs-validation pt-4 px-md-5" novalidate method="POST">
+            
+            <div class="form-row">
+        
+                <div class="col-12 mb-2">
+                    <label class="mb-1" for="name">Họ tên khách:</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                        value="@khachhang.TenKhachHang" disabled readonly required>
+                </div>
+         
+                <div class="col-md-6 mb-2">
+                    <label class="mb-1" for="table">Số điện thoại:</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                        value="@khachhang.SoDienThoai" disabled readonly required>
+                </div>
+    
+                <div class="col-md-6 mb-2">
+                    <label class="mb-1" for="status">Tình trạng:</label>
+                    @if ( @lichhen.TinhTrang == 0)
+                    {
+                        <input type="text" class="form-control" id="status" name="status"
+                        value="Chờ xử lý" disabled readonly required>
+                    } else if ( @lichhen.TinhTrang == 1)
+                    {                        
+                        <input type="text" class="form-control" id="status" name="status"
+                        value="Đã xử lý" disabled readonly required>
+                    } else
+                    {
+                        <input type="text" class="form-control" id="status" name="status"
+                        value="Hủy tiếp nhận" disabled readonly required>
+                    }
+                </div>
+                             
+                <div class="col-md-4 mb-2">
+                    <label class="mb-1" for="date">Ngày hẹn:</label>
+                    <input type="text" class="form-control" id="date" name="date" 
+                        value="@lichhen.NgayHen.ToString("dd/M/yyyy", CultureInfo.InvariantCulture)" disabled readonly required>
+                </div>
+              
+                <div class="col-md-4 mb-2">
+                    <label class="mb-1" for="time">Thời gian:</label>
+                    <input type="text" class="form-control" id="time" name="time"
+                        value="@lichhen.ThoiGian.ToString(@"hh\:mm\:ss")" disabled readonly required>
+                </div>
+               
+                <div class="col-md-4 mb-2">
+                    <label class="mb-1" for="customer">Số lượng khách:</label>
+                    <input type="text" class="form-control" id="customer" name="customer"
+                        value="@lichhen.SoLuongKhach người" disabled readonly required>
+                </div>
+         
+                <div class="col-md-12 mb-2">
+                    <label class="mb-1" for="table">Bàn ăn:</label>
+                    <input type="text" class="form-control" id="customer" name="customer"
+                         value="Bàn @lichhen.MaBanAn" disabled readonly required>
+                </div>
+                           
+                <div class="col-12 mb-2">
+                    <label class="mb-1" for="need">Nhu cầu:</label>
+                    <textarea type="text" class="form-control" id="need" name="need"
+                         rows="5" disabled readonly required>@lichhen.NhuCau</textarea>
+                </div>
+            </div>
+            <div class="d-flex flex-row justify-content-end mt-2">
+                @*<a href="/comnha/schedules/edit/@lichhen.MaLichHen" class="btn btn-outline-success mr-2">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Sửa
+                </a>*@
+                <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
+                    data-placement="top" title="Xóa" data-toggle="modal" data-id="@lichhen.MaLichHen" data-img="" data-name=""
+                    data-target="#delete-modal">
+                        <i class="fa-solid fa-trash-can"></i>
+                        Xóa
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa lịch hẹn?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="delete-form" name="delete-form" method="POST">
+    <input type="hidden" name="deleted-schedule-id" value=""/>
+</form>
+
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        const deleteForm = document.getElementById('delete-form')
+        const btnDeleteCourse = document.getElementById('btn-confirm-delete')
+        const modalMessage = document.querySelector('.modal-body__message')
+        let id;
+
+        // Tooltip
+        $('[data-tooltip="tooltip"]').tooltip();
+
+        // When single button delete clicked in each course
+        $('#delete-modal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget)
+            id = button.data('id')
+            $("input[name='deleted-schedule-id']").val(button.data('id'));
+            modalMessage.innerHTML = `Bạn có thật sự muốn xóa lịch hẹn: <strong class="text-danger">${id}</strong> không?`
+        })
+
+        // When button delete clicked
+        btnDeleteCourse.onclick = function () {
+            const deletedID = $("input[name='deleted-schedule-id']").val();
+
+            let API_URL = `https://localhost:5556/api/comnha/delete-schedule/${deletedID}`;
+            const options = {
+                credentials: 'same-origin',
+                method: 'DELETE',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json;charset=UTF-8',
+                }
+                //,
+                //body: JSON.stringify({
+                //    toTime: username,
+                //    password: password
+                //})
+            };
+
+            fetch(API_URL, options)
+            .then(json_result => {
+                return json_result.json();
+            })
+            .then(result => {
+                console.log(result);
+                if (result.status) {
+                    window.location.href = "/comnha/schedules";
+                }
+            })
+            .catch(error => {
+                //fadeError(error);
+            })
+        }
+    });
+</script>
+}

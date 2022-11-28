@@ -1,0 +1,287 @@
+@model Nhanvien
+@{
+    ViewData["Title"] = "Tạo phiếu nhập";
+    Layout = "~/Views/Shared/_Layout_Private.cshtml";
+
+    IEnumerable<Nhacungcap> supplierList = ViewData["SupplierList"] as IEnumerable<Nhacungcap>;
+    IEnumerable<Nguyenvatlieu> materialList = ViewData["MaterialList"] as IEnumerable<Nguyenvatlieu>;
+}
+
+@section Stylesheets{
+    <link rel="stylesheet" href="~/css/private/received-note.css">
+}
+
+<div class="received-note-create">
+    <div class="title">
+        Tạo phiếu nhập
+        <span></span>
+    </div>
+    <a href="/comnha/received-notes" class="text-danger d-inline-block pt-2">Trở lại</a>
+    <div class="container">
+        <div class="row pt-3">
+            <div class="col-12 col-lg-8 offset-lg-2">
+                <form id="create-form" class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <input type="hidden" id="staff-id" name="staff-id" value="@Model.MaNhanVien" />
+
+                        <div class="col-12 mb-2">
+                            <label class="mb-1" for="supplier">Nhà cung cấp:</label>
+                            <select id="supplier" class="custom-select" name="supplier" required>
+                                <option value="">--Chọn nhà cung cấp--</option>
+                                @foreach (Nhacungcap nhacungcap in supplierList)
+                                {
+                                    <option value="@nhacungcap.MaNhaCungCap">@nhacungcap.TenNhaCungCap</option>
+                                }
+                            </select>
+                            <div class="invalid-feedback">Vui lòng chọn nhà cung cấp!</div>
+                        </div>
+                      
+                        <div class="col-md-6 mb-2">
+                            <label class="mb-1" for="received-date">Ngày nhập:</label>
+                            <input type="date" class="form-control" id="received-date" name="receivedDate" required>
+                            <div class="invalid-feedback">Vui lòng chọn ngày nhập!</div>
+                        </div>
+                                         
+                        <div class="col-12 mb-2">
+                            <label class="mb-1" for="note">Ghi chú:</label>
+                            <textarea class="form-control" id="note" rows="5" name="note"
+                                placeholder="Nhập ghi chú"></textarea>
+                        </div>
+            
+                        <div class="d-flex justify-content-end mb-2">
+                            <strong id="total-received-notes">Tổng tiền: <span temp-total="0" >0</span> VNĐ</strong>
+                        </div>
+
+                        <div class="col-12 mb-2 pt-2">
+                            <div class="d-flex justify-content-between align-items-center pb-2">
+                                <label>Chi tiết phiếu nhập:</label>
+                                <button id="btn-add-material" type="button" class="btn btn-info">Thêm</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-bordered table-hover table-light table received-note-create__table">
+                                    <thead>
+                                        <tr class="text-white" style="background-color: var(--primary-color);">
+                                            <th style="min-width: 160px;" class="text-center">Nguyên vật liệu</th>
+                                            <th style="min-width: 138px;" class="text-center">Số lượng</th>
+                                            <th style="min-width: 138px;" class="text-center">Đơn giá</th>
+                                            <th style="min-width: 80px;" class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="received-note-create__table-body">
+                                        <tr class="received-note-create__table-item">
+                                            <td class="text-center align-middle">
+                                                <select id="select-items" name="selected-materials" class="custom-select" required>
+                                                    <option value="" class="text-center">--Chọn NVL--</option>
+                                                    @foreach (Nguyenvatlieu nguyenvatlieu in materialList)
+                                                    {
+                                                        <option data-price="@nguyenvatlieu.DonGia" value="@nguyenvatlieu.MaNguyenVatLieu">@nguyenvatlieu.TenNguyenVatLieu</option>
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <input name="material-amount" onchange="calculateTotal(event)" min="0" type="number" class="form-control" required>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <input name="material-total-price" type="text" class="form-control" readonly required>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    data-tooltip="tooltip" data-placement="top" title="Xóa"
+                                                    data-toggle="modal" data-target="#delete-modal">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-2">
+                        <button type="reset" class="btn btn-outline-primary mr-2" id="reset-btn">Nhập lại</button>
+                        <button type="submit" class="btn btn-outline-success">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa nguyên vật liệu?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="delete-modal-body__message" class="modal-body__message">Do you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            const createForm = document.getElementById('create-form')
+            const btnDelete = document.getElementById('btn-confirm-delete')
+            const deleteModalMessage = document.getElementById('delete-modal-body__message')
+            const btnAddMaterial = document.getElementById('btn-add-material')
+            let receivedItem
+            let name
+
+            createForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const received_notes_data = $("#create-form").serializeArray();
+                console.log(received_notes_data);
+
+                const values_Material_ID = $("select[name='selected-materials']").map(function(){return $(this).val();}).get();
+                const values_Material_Amount = $("input[name='material-amount']").map(function(){return $(this).val();}).get();
+                const values_Material_TotalPrice = $("input[name='material-total-price']").map(function(){return $(this).val();}).get();
+
+                console.log(values_Material_ID, values_Material_Amount, values_Material_TotalPrice);
+
+                if (values_Material_ID.length === 0 || values_Material_Amount.length === 0 || values_Material_TotalPrice.length === 0) {                  
+                    return;
+                }
+
+                const chitietphieunhap = [];
+                let totalPrice = 0;
+
+                for (let i = 0; i < values_Material_ID.length; i++) {
+                    chitietphieunhap.push({
+                      maNguyenVatLieu: values_Material_ID[i],
+                      maPhieuNhap: "string",
+                      soLuongNhap: values_Material_Amount[i]
+                    });
+                    totalPrice += parseFloat(values_Material_TotalPrice[i]);
+                }
+
+                console.log(chitietphieunhap);
+
+                let API_URL = `https://localhost:5556/api/comnha/create-received-note`;
+                const options = {
+                    credentials: 'same-origin',
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json;charset=UTF-8'
+                    },
+                    body: JSON.stringify({
+                        maPhieuNhap: "string",
+                        ngayNhapHang: received_notes_data[2]['value'],
+                        tongGiaNhap: totalPrice,
+                        ghiChu: received_notes_data[3]['value'],
+                        maNhaCungCap: received_notes_data[1]['value'],
+                        maNhanVien: received_notes_data[0]['value'],
+                        chitietphieunhaps: chitietphieunhap
+                    })
+                }
+
+                console.log(options);
+
+                fetch(API_URL, options)
+                    .then(json_result => {
+                        return json_result.json();
+                    })
+                    .then(result => {
+                        console.log(result);
+                        if ( result.status ){
+                            window.location.href = "/comnha/received-notes";
+                        } else {
+                            showError(result.message);
+                        } 
+                    })
+                    .catch(error => {
+                                
+                    })
+
+
+                createForm.classList.add('was-validated');
+
+                return;
+            }, false);
+
+            // Tooltip
+            $('[data-tooltip="tooltip"]').tooltip();
+
+            // When single button delete clicked in each course
+            $('#delete-modal').on('show.bs.modal', function (event) {
+                let button = $(event.relatedTarget)
+                receivedItem = button.closest('.received-note-create__table-item')
+                name = receivedItem.find('#select-items').children(':selected').text()
+                deleteModalMessage.innerHTML = `Bạn có thật sự muốn xóa nguyên vật liệu: <strong class="text-danger">${name}</strong> không?`
+            })
+
+            // When button delete clicked
+            btnDelete.onclick = function () {
+                $('#delete-modal').modal('hide')
+                receivedItem.remove()
+                console.log('Xóa thành công')
+            }
+
+            
+
+            // Sự kiện nhân vào nút Thêm để thêm 1 dòng vật liệu mới
+            $('#btn-add-material').click(function () {               
+                let clone = $(".received-note-create__table-item").first().clone();
+                $('#received-note-create__table-body').append(clone);
+            })
+
+        }, false);
+    })();
+
+    function calculateTotal(e) {
+        const selectedMaterialAmount = parseInt(e.target.value);
+
+        if (!e.target.value || isNaN(e.target.value) || parseFloat(e.target.value) < 0) {
+            e.target.value = 0
+        }
+
+        const relatedTableItem = e.target.closest('.received-note-create__table-item')
+
+        const selectedMaterial = relatedTableItem.querySelector('#select-items');
+
+        const price = selectedMaterial.options[selectedMaterial.selectedIndex].getAttribute("data-price");
+
+        const selectedMaterialPrice = isNaN(price) || price == null ? parseFloat(0) : parseFloat(price);
+
+        relatedTableItem.querySelector('input[name="material-total-price"]').value = selectedMaterialAmount * selectedMaterialPrice;
+        updateTotalPrice();
+    }
+
+    function updateTotalPrice(){
+        const total = $("#total-received-notes span");
+        
+        let sum = 0;
+        const allPrice = document.querySelectorAll("input[name='material-total-price']").forEach(el => {
+            if(!isNaN(el.value) && el.value.length!=0) 
+              {
+                sum += parseFloat(el.value);            
+              } 
+
+            console.log(el);
+        });
+
+        total.html(numberWithCommas(sum));
+    }
+    
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+</script>
