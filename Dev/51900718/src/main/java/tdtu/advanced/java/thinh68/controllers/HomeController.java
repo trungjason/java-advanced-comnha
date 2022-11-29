@@ -17,21 +17,21 @@ public class HomeController {
         return "ComNha/index";
     }
     
-    @GetMapping("/pages/book")
+    @GetMapping("/book")
     public String book(Model model) {
     	model.addAttribute("pageTitle", "Đặt bàn");
     	
         return "ComNha/book";
     }
     
-    @GetMapping("/pages/contact")
+    @GetMapping("/contact")
     public String contact(Model model) {
     	model.addAttribute("pageTitle", "Liên hệ");
     	
         return "ComNha/contact";
     }
     
-    @GetMapping("/pages/introduce")
+    @GetMapping("/introduce")
     public String introduce(Model model) {
     	model.addAttribute("pageTitle", "Giới thiệu");
     	

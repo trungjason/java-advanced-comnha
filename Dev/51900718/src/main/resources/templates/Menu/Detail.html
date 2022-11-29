@@ -1,70 +1,73 @@
-﻿@{
-    ViewData["Title"] = "Chi tiết món ăn";
-}
-@using ComNha.Models
-@model ComNha.Models.Monan
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-@{    
-    // define format VND
-    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
-}
+<head>
+	
+	<div th:replace="/Shared/_Layout :: public_layout_header(type='remove')"></div>
+	<link rel="stylesheet" th:href="@{/css/image-zoom.css}">
+	<link rel="stylesheet" th:href="@{/css/menu/style.css}">
+</head>
 
-@section Stylesheets {
-  <link rel="stylesheet" href="~/css/menu/style.css">
-}
+<body>
+	<div th:replace="/Shared/Components/_Header :: header"></div>
 
+	<main id="main">
+		<div class="detail">
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-12 col-xl-6 d-none d-xl-block">
+		                <div class="detail-img">
+		                    <img 
+		                    style="width: 100%; height: 300px; object-fit:cover; border-radius: 12px; margin-bottom: 20px;"
+		                    id="imageZoom" th:src="@{/images/food-images/lau1.jpg}" alt="Img">
+		                </div>
+		            </div>
+		            <div class="col-12 col-md-6 col-xl-6 d-block d-xl-none">
+		                <img 
+		                    style="width: 100%; height: 300px; object-fit:cover; border-radius: 12px; margin-bottom: 20px;"
+		                    th:src="@{/images/food-images/lau1.jpg}"
+		                    alt="Img"
+		                >
+		            </div>
+		            <div class="col-12 col-md-6 col-xl-6">
+		                <div 
+		                    class="detail-info"
+		                    data-food-id="@Model.MaMonAn"
+		                >
+		                    <h1 class="detail-info__name">Lẩu thái</h1>
+		                    <div class="detail-info__price">
+		                        350.000đ
+		                    </div>
+		                    <p class="detail-info__desc">
+		                        Món ngon phù hợp 2-3 người ăn
+		                    </p>
+		                    <button class="detail-info__order detail-info__order--add">
+		                        <i class="fas fa-cart-plus"></i>
+		                        Order
+		                    </button>
+		                    <button class="detail-info__order detail-info__order--added">
+		                        Đã thêm
+		                    </button>
+		                </div>
+		            </div>
+		            <div class="col-12">
+		                <div class="detail-desc">
+		                    <h4 class="detail-desc__label">Mô tả</h4>
+		                    <p class="detail-desc__content">
+		                        Món ăn đậm vị
+		                    </p>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</main>
+	
+	<div th:replace="/Shared/Components/_Hotline :: hotLine"></div>
+	<div th:replace="/Shared/Components/_GoToTop :: goToTop"></div>
+	<div th:replace="/Shared/Components/_Footer :: footer"></div>
 
-<div class="detail">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-xl-6 d-none d-xl-block">
-                <div class="detail-img">
-                    <img 
-                    style="width: 100%; height: 300px; object-fit:cover; border-radius: 12px; margin-bottom: 20px;"
-                    id="imageZoom" src="~/images/food-images/@Model.HinhAnh" alt="Img">
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl-6 d-block d-xl-none">
-                <img 
-                    style="width: 100%; height: 300px; object-fit:cover; border-radius: 12px; margin-bottom: 20px;"
-                    src="~/images/food-images/@Model.HinhAnh" 
-                    alt="Img"
-                >
-            </div>
-            <div class="col-12 col-md-6 col-xl-6">
-                <div 
-                    class="detail-info"
-                    data-food-id="@Model.MaMonAn"
-                >
-                    <h1 class="detail-info__name">@Model.TenMonAn</h1>
-                    <div class="detail-info__price">
-                        @Model.DonGia.ToString("#,###", format.NumberFormat)đ
-                    </div>
-                    <p class="detail-info__desc">
-                        @Model.MoTaNgan
-                    </p>
-                    <button class="detail-info__order detail-info__order--add">
-                        <i class="fas fa-cart-plus"></i>
-                        Order
-                    </button>
-                    <button class="detail-info__order detail-info__order--added">
-                        Đã thêm
-                    </button>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="detail-desc">
-                    <h4 class="detail-desc__label">Mô tả</h4>
-                    <p class="detail-desc__content">
-                        @Model.MoTa
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-@section Scripts {
-    <script src="~/js/menu/control.js"></script>
-}
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/image-zoom.min.js}"></script>
+	<script th:src="@{/js/menu/control.js}"></script>
+</body>
