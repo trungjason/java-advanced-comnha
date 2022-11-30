@@ -40,7 +40,8 @@ $(document).ready(function() {
             
             const categoryID = $(this).attr('data-category-id');
             
-            $.get(`https://localhost:5556/Menu/${categoryID}`, function (data) {
+            $.get(`http://localhost:8080/api/menu/?maNhomMonAn=${categoryID}`, function (data) {
+				console.log(data);
                 if (data.length != 0) {
                     $('.menu-list-wrapper').children('.menu-item').remove();
                     for (let i = 0; i < data.length; i++) {
@@ -52,7 +53,7 @@ $(document).ready(function() {
                                 data-food-id="${food.maMonAn}"
                             >
                                 <div class="menu-item__wrapper d-flex flex-column align-items-center flex-lg-row">
-                                    <a href="/Menu/chitiet/${food.maMonAn}">
+                                    <a href="/menu/chitiet/${food.maMonAn}">
                                         <img 
                                             src="/images/food-images/${food.hinhAnh}" 
                                             alt="Img" 
@@ -62,7 +63,7 @@ $(document).ready(function() {
                                     <div class="menu-item__info d-flex flex-column justify-content-between py-2 px-3">
                                         <div class="d-flex flex-column">
                                             <div class="d-flex align-items-center justify-content-between">
-                                                <a href="/Menu/chitiet/${food.maMonAn}" class="menu-item__name">
+                                                <a href="/menu/chitiet/${food.maMonAn}" class="menu-item__name">
                                                     ${food.tenMonAn}
                                                 </a>
                                                 <span class="menu-item__price">

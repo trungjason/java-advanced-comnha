@@ -19,27 +19,27 @@
 		                <div class="detail-img">
 		                    <img 
 		                    style="width: 100%; height: 300px; object-fit:cover; border-radius: 12px; margin-bottom: 20px;"
-		                    id="imageZoom" th:src="@{/images/food-images/lau1.jpg}" alt="Img">
+		                    id="imageZoom" th:src="@{'/images/food-images/' + ${monAn.getHinhAnh()}}" alt="Img">
 		                </div>
 		            </div>
 		            <div class="col-12 col-md-6 col-xl-6 d-block d-xl-none">
 		                <img 
 		                    style="width: 100%; height: 300px; object-fit:cover; border-radius: 12px; margin-bottom: 20px;"
-		                    th:src="@{/images/food-images/lau1.jpg}"
+		                    th:src="@{'/images/food-images/' + ${monAn.getHinhAnh()}}"
 		                    alt="Img"
 		                >
 		            </div>
 		            <div class="col-12 col-md-6 col-xl-6">
 		                <div 
 		                    class="detail-info"
-		                    data-food-id="@Model.MaMonAn"
+		                    th:data-food-id="${monAn.getMaMonAn()}"
 		                >
-		                    <h1 class="detail-info__name">Lẩu thái</h1>
+		                    <h1 class="detail-info__name">[[${monAn.getTenMonAn()}]]</h1>
 		                    <div class="detail-info__price">
-		                        350.000đ
+		                        [[${monAn.getDonGia()}]]đ
 		                    </div>
 		                    <p class="detail-info__desc">
-		                        Món ngon phù hợp 2-3 người ăn
+		                        [[${monAn.getMoTaNgan()}]]
 		                    </p>
 		                    <button class="detail-info__order detail-info__order--add">
 		                        <i class="fas fa-cart-plus"></i>
@@ -54,7 +54,7 @@
 		                <div class="detail-desc">
 		                    <h4 class="detail-desc__label">Mô tả</h4>
 		                    <p class="detail-desc__content">
-		                        Món ăn đậm vị
+		                        [[${monAn.getMoTa()}]]
 		                    </p>
 		                </div>
 		            </div>

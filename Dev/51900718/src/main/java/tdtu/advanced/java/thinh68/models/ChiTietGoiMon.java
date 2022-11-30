@@ -6,8 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,10 +38,12 @@ public class ChiTietGoiMon {
 	@Column(name = "so_luong_mon_an")
 	private int soLuongMonAn;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "chi_tiet_goi_mon_mon_an_foreign_key", referencedColumnName = "ma_mon_an", nullable = false)
 	private MonAn monAn;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "chi_tiet_goi_mon_phieu_goi_mon_foreign_key", referencedColumnName = "ma_order", nullable = false)
 	private PhieuGoiMon phieuGoiMon;

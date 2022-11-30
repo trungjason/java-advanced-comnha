@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -50,14 +52,17 @@ public  class LichHen {
     @Column(name = "tinh_trang")
     private int tinhTrang;
     
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lich_hen_ban_an_foreign_key", referencedColumnName="ma_ban_an")
     private BanAn banAn;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lich_hen_khach_hang_foreign_key", referencedColumnName="ma_khach_hang", nullable = false)
     private KhachHang khachHang;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lich_hen_nhan_vien_foreign_key", referencedColumnName="ma_nhan_vien")
     private NhanVien nhanVien;

@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value={"", "/", "comnha", "ComNha"})
 public class CartController {
+	
 	@GetMapping("/cart")
     public String index(Model model) {
     	model.addAttribute("pageTitle", "Giỏ hàng");
-    	
         return "Cart/index";
     }
 }

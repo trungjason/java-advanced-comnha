@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<div th:replace="/Shared/_Layout :: public_layout_header(type='remove')"></div>
+<link rel="stylesheet" th:href="@{/css/menu/style.css}">
+</head>
+
+<body>
+	<div th:replace="/Shared/Components/_Header :: header"></div>
+
+	<main id="main">
+		<h1 style="margin: 100px;">[[${errorMsg}]]</h1>
+	</main>
+
+	<div th:replace="/Shared/Components/_Hotline :: hotLine"></div>
+	<div th:replace="/Shared/Components/_GoToTop :: goToTop"></div>
+	<div th:replace="/Shared/Components/_Footer :: footer"></div>
+
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/menu/control.js}"></script>
+</body>

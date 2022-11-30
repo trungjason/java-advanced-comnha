@@ -11,7 +11,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: 'GET',
-                url: `https://localhost:5556/Menu/chitiet/${foodID}`,
+                url: `http://localhost:8080/api/menu/chitiet/${foodID}`,
                 success: function (data) {
                     const foodName = data.tenMonAn;
                     const foodImage = data.hinhAnh;

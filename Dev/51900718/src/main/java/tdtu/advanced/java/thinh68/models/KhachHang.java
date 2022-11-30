@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -43,9 +45,11 @@ public class KhachHang {
     @Column(name="email", nullable = false)
     private String email;
     
+    @JsonManagedReference
     @OneToMany(mappedBy="khachHang")
     private List<LichHen> khachHang_LichHens;
     
+    @JsonManagedReference
     @OneToMany(mappedBy="khachHang")
     private List<HoaDon> khachHang_HoaDons;
 }

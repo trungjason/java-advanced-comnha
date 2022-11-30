@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -37,17 +40,21 @@ public class PhieuGoiMon {
 	@Column(name = "ghi_chu_mon_an")
 	private String ghiChuMonAn;
 
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "phieu_goi_mon_ban_an_foreign_key", referencedColumnName = "ma_ban_an", nullable = false)
 	private BanAn banAn;
 
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "phieu_goi_mon_nhan_vien_foreign_key", referencedColumnName = "ma_nhan_vien", nullable = false)
 	private NhanVien nhanVien;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "phieuGoiMon")
 	private List<ChiTietGoiMon> phieuGoiMon_ChiTietGoiMons;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "phieuGoiMon")
 	private List<HoaDon> phieuGoiMon_HoaDons;
 }

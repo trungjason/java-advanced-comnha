@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<div th:replace="/Shared/_Layout :: public_layout_header(type='remove')"></div>
+<link rel="stylesheet" th:href="@{/css/menu/style.css}">
+</head>
+
+<body>
+	<div th:replace="/Shared/Components/_Header :: header"></div>
+
+	<main id="main">
+		<div class="menu">
+			<div class="container">
+				<div class="menu-label">Thực đơn</div>
+
+				<div class="menu-nav">
+					<div class="menu-nav__title">Danh mục:</div>
+					<div class="row px-2">
+						<div class="col-6 col-sm-2 px-0"
+							th:each="foodGroup : ${nhomMonAn}">
+							<div class="menu-nav__item"
+								th:data-category-id="${foodGroup.getMaNhom()}">
+								<i class="fas fa-sort-down"></i> [[${foodGroup.getTenNhom()}]]
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="menu-label">Danh sách món ăn</div>
+				<div class="menu-list mt-4">
+					<div class="row menu-list-wrapper">
+					
+						<div th:remove='tag' th:each="food : ${monAn}">
+							<div class="col-12 col-md-6 menu-item"
+								th:data-food-id="${food.getMaMonAn()}">
+								<div
+									class="menu-item__wrapper d-flex flex-column align-items-center flex-lg-row">
+									<a th:href="${'/menu/chitiet/' + food.getMaMonAn()}"> <img
+										th:src="@{'/images/food-images/' + ${food.getHinhAnh()}}" alt="Img"
+										class="menu-item__img">
+									</a>
+									<div
+										class="menu-item__info d-flex flex-column justify-content-between py-2 px-3">
+										<div class="d-flex flex-column">
+											<div
+												class="d-flex align-items-center justify-content-between">
+												<a th:href="${'/menu/chitiet/' + food.getMaMonAn()}" class="menu-item__name">
+													[[${food.getTenMonAn()}]] </a> <span class="menu-item__price"> [[${food.getDonGia()}]]đ </span>
+											</div>
+											<p class="menu-item__desc">[[${food.getMoTaNgan()}]]</p>
+										</div>
+										<button class="menu-item__order menu-item__order--add">
+											<i class="fas fa-cart-plus"></i> Order
+										</button>
+										<button class="menu-item__order menu-item__order--added">
+											Đã thêm</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<div th:replace="/Shared/Components/_Hotline :: hotLine"></div>
+	<div th:replace="/Shared/Components/_GoToTop :: goToTop"></div>
+	<div th:replace="/Shared/Components/_Footer :: footer"></div>
+
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/menu/control.js}"></script>
+</body>

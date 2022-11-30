@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -58,16 +60,20 @@ public class NhanVien {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "nhan_vien_tai_khoan_forgein_key", referencedColumnName = "ma_tai_khoan")
 	private TaiKhoan taiKhoan;
-
+	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "nhanVien")
 	private List<LichHen> nhanVien_LichHens;
 
+	@JsonManagedReference	
 	@OneToMany(mappedBy = "nhanVien")
 	private List<PhieuGoiMon> nhanVien_PhieuGoiMons;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "nhanVien")
 	private List<PhieuNhap> nhanVien_PhieuNhaps;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "nhanVien")
 	private List<HoaDon> nhanVien_HoaDons;
 }
