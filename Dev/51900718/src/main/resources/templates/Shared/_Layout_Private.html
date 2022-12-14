@@ -1,64 +1,78 @@
 ﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head th:fragment="private_layout_header(type)" th:remove"${type}">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[[${pageTitle}]] - Cơm nhà</title>
+<head th:fragment="private_layout_header(type)"th:remove"${type}">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[[${pageTitle}]] - Cơm nhà</title>
 
-    <script th:src="@{js/lightbox-plus-jquery.min.js}"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script th:src="@{js/lightbox-plus-jquery.min.js}"></script>
+<script type="text/javascript"
+	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+	integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,400;1,600&display=swap"
+	rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-   
-    
-    <link rel="stylesheet" th:href="@{css/lightbox.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
-    <link rel="stylesheet" th:href="@{css/private/base.css}">
-    <link rel="stylesheet" th:href="@{css/private/main.css}">
-    <link rel="stylesheet" th:href="@{css/private/sitebar.css}">
-    <link rel="stylesheet" th:href="@{css/calendar.css}">
-    
-    <link rel="stylesheet" th:href="@{css/home/style.css}">
-    <link rel="stylesheet" th:href="@{css/base.css}">
-    <link rel="stylesheet" th:href="@{css/main.css}">
+
+<link rel="stylesheet" th:href="@{css/lightbox.min.css}">
+
+<link rel="stylesheet" th:href="@{css/private/base.css}">
+<link rel="stylesheet" th:href="@{css/private/main.css}">
+<link rel="stylesheet" th:href="@{css/private/sitebar.css}">
+<link rel="stylesheet" th:href="@{css/calendar.css}">
+
+<link rel="stylesheet" th:href="@{css/home/style.css}">
+<link rel="stylesheet" th:href="@{css/base.css}">
+<link rel="stylesheet" th:href="@{css/main.css}">
 </head>
 
 <body>
 
-    @Html.Partial("Private/_Header")
+	<div th:replace="Private/_Header :: header"></div>
+	<main role="main">
+		<div class="container my-5">
+			<div class="row">
+				<div class='col-md-3 col-lg-3 col-xl-3'>
+					<div th:replace="Private/_Sidebar :: sidebar"></div>
+				</div>
 
-    <main role="main">
-       <div class="container my-5">
-            <div class="row">
-                <div class='col-md-3 col-lg-3 col-xl-3'> 
-                     @Html.Partial("Private/_Sidebar") 
-                </div>
+				<div class='col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 '
+					style="margin-top: var(- -header-height);">
+				</div>
+			</div>
+		</div>
+	</main>
 
-                <div class='col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 ' style="margin-top: var(--header-height);"> 
-                    @RenderBody()
-                </div>
-            </div>
-       </div>
-    </main>
+	<div th:replace="Components/_GoToTop :: goToTop"></div>
+	<div th:replace="Private/_Footer :: footer"></div>
 
-   @Html.Partial("Components/_GoToTop")
-   @Html.Partial("Private/_Footer")
-   
-    <script src="~/js/main.js"></script>
-    <script src="~/js/home/control.js"></script>
-
-    @RenderSection("Scripts", required: false)
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/home/control.js}"></script>
 </body>
 
 </html>

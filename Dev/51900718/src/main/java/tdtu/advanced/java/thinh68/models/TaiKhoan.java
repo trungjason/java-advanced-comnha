@@ -23,7 +23,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Builder
-@Table(name="taikhoan")
+@Table(name="tai_khoan")
 public class TaiKhoan {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)

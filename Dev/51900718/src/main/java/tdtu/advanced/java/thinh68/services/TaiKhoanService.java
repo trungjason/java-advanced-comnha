@@ -19,8 +19,8 @@ public class TaiKhoanService {
         return taiKhoanRepository.findAll();
     }
      
-    public void save(TaiKhoan product) {
-    	taiKhoanRepository.save(product);
+    public void save(TaiKhoan account) {
+    	taiKhoanRepository.save(account);
     }
      
     public TaiKhoan get(long id) {
@@ -29,5 +29,9 @@ public class TaiKhoanService {
      
     public void delete(long id) {
     	taiKhoanRepository.deleteById(id);
+    }
+    
+    public TaiKhoan get(String username) {
+    	return taiKhoanRepository.findByTenTaiKhoan(username);
     }
 }

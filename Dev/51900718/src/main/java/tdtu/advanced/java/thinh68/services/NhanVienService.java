@@ -13,21 +13,25 @@ import tdtu.advanced.java.thinh68.repositories.NhanVienRepository;
 @Transactional
 public class NhanVienService {
 	@Autowired
-    private NhanVienRepository nhanVienRepository;
-	
+	private NhanVienRepository nhanVienRepository;
+
 	public List<NhanVien> listAll() {
-        return nhanVienRepository.findAll();
-    }
-     
-    public void save(NhanVien product) {
-    	nhanVienRepository.save(product);
-    }
-     
-    public NhanVien get(long id) {
-        return nhanVienRepository.findById(id).get();
-    }
-     
-    public void delete(long id) {
-    	nhanVienRepository.deleteById(id);
-    }
+		return nhanVienRepository.findAll();
+	}
+
+	public void save(NhanVien product) {
+		nhanVienRepository.save(product);
+	}
+
+	public NhanVien get(long id) {
+		return nhanVienRepository.findById(id).get();
+	}
+
+	public NhanVien getByAccountId(long id) {
+		return nhanVienRepository.findByTaiKhoan_Id(id);
+	}
+
+	public void delete(long id) {
+		nhanVienRepository.deleteById(id);
+	}
 }

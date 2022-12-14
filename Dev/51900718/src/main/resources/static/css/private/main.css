@@ -194,6 +194,7 @@
 .header-mobile__title {
     margin: 0;
     margin-bottom: 8px;
+    margin-top: 16px;
     color: rgba(0, 0, 0, 0.4);
     font-weight: bold;
 }
