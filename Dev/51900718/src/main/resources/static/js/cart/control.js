@@ -168,18 +168,12 @@ function handleIncrease(e) {
 // Bắt sự kiện các ô input được thay đổi
 function handleInputChange(e) {
     const cartItemElement = $(e).closest('.cart-item');
+    
     let value = parseInt($(e).val());
+    
     if (value < 1) {
         value = 1;
     }
+    
     updateCartItem(cartItemElement, "custom", value);
 }
-
-// $('.cart-item__num').change(function () {
-//     const cartItemElement = $(this).closest('.cart-item');
-//     let value = parseInt($(this).val());
-//     if (value < 1) {
-//         value = 1;
-//     }
-//     updateCartItem(cartItemElement, "custom", value);
-// })

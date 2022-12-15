@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import tdtu.advanced.java.thinh68.models.KhachHang;
+import tdtu.advanced.java.thinh68.models.LichHen;
+
 @Controller
 @RequestMapping(value = { "", "/", "comnha", "ComNha" })
 public class HomeController {
@@ -48,36 +51,4 @@ public class HomeController {
     	
         return "ComNha/member";
     }
-
-		return "ComNha/index";
-	}
-
-	@GetMapping("/book")
-	public String book(Model model) {
-		model.addAttribute("pageTitle", "Đặt bàn");
-
-		return "ComNha/book";
-	}
-
-	@GetMapping("/contact")
-	public String contact(Model model) {
-		model.addAttribute("pageTitle", "Liên hệ");
-
-		return "ComNha/contact";
-	}
-
-	@GetMapping("/introduce")
-	public String introduce(Model model) {
-		model.addAttribute("pageTitle", "Giới thiệu");
-
-		return "ComNha/introduce";
-	}
-
-	@GetMapping("/member")
-	public String member(Model model) {
-		model.addAttribute("pageTitle", "Hội viên");
-
-		return "ComNha/member";
-	}
-
 }

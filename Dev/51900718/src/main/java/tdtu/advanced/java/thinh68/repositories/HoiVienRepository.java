@@ -7,5 +7,5 @@ import tdtu.advanced.java.thinh68.models.HoiVien;
 
 @Repository
 public interface HoiVienRepository extends JpaRepository<HoiVien, Long> {
-
+	HoiVien findBySoDienThoai(String soDienThoai);
 }

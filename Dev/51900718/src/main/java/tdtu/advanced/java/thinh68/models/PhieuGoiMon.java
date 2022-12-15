@@ -42,12 +42,12 @@ public class PhieuGoiMon {
 
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "phieu_goi_mon_ban_an_foreign_key", referencedColumnName = "ma_ban_an", nullable = false)
+	@JoinColumn(name = "phieu_goi_mon_ban_an_foreign_key", referencedColumnName = "ma_ban_an", nullable = true)
 	private BanAn banAn;
 
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "phieu_goi_mon_nhan_vien_foreign_key", referencedColumnName = "ma_nhan_vien", nullable = false)
+	@JoinColumn(name = "phieu_goi_mon_nhan_vien_foreign_key", referencedColumnName = "ma_nhan_vien", nullable = true)
 	private NhanVien nhanVien;
 
 	@JsonManagedReference

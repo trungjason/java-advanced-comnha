@@ -22,6 +22,10 @@ public class KhachHangService {
     public void save(KhachHang product) {
     	khachHangRepository.save(product);
     }
+    
+    public KhachHang saveWithReturn(KhachHang product) {
+    	return khachHangRepository.save(product);
+    }
      
     public KhachHang get(long id) {
         return khachHangRepository.findById(id).get();

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tdtu.advanced.java.thinh68.jsonmodels.DatBan;
 import tdtu.advanced.java.thinh68.models.JsonResponseFormat;
 import tdtu.advanced.java.thinh68.models.KhachHang;
 import tdtu.advanced.java.thinh68.models.LichHen;
@@ -29,22 +30,38 @@ public class BookRestController {
 	@Autowired
 	private KhachHangService khachHangService;
 	
-    @PostMapping(value = "/api/book")
+    @PostMapping(value = "/api/book", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public ResponseEntity<JsonResponseFormat> book(
-    		@RequestBody LichHen lichHen,
-    		@RequestBody KhachHang khachHang
+    		@RequestBody DatBan datBan
     		) {
-    	JsonResponseFormat response = new JsonResponseFormat(true, "Đặt lịch hẹn thành công");
-    	
-//    	System.out.println(tenKhachHang);
-//    	System.out.println(soDienThoai);
-//    	
-//    	System.out.println(soLuongKhach);
-//    	System.out.println(ngayHen);
-//    	System.out.println(thoiGian);
-//    	System.out.println(nhuCau);
-    	
-    	return new ResponseEntity<JsonResponseFormat>(response, HttpStatus.OK);
-    }
+    	try {
+    		JsonResponseFormat response = new JsonResponseFormat(true, "Đặt lịch hẹn thành công");
+        	
+        	KhachHang khachHang = KhachHang.builder()
+        			.tenKhachHang(datBan.getTenKhachHang())
+        			.soDienThoai(datBan.getSoDienThoai())
+        			.build();
+        	
+        	khachHang = khachHangService.saveWithReturn(khachHang);
+        
+        	
+        	LichHen lichHen = LichHen.builder()
+        			.soLuongKhach(datBan.getSoLuongKhach())
+        			.ngayHen(datBan.getNgayHen())
+        			.thoiGian(datBan.getThoiGian())
+        			.nhuCau(datBan.getNhuCau())
+        			.khachHang(khachHang)
+        			.build();
+        	
+        	lichHenService.save(lichHen);
+        	
+        	return new ResponseEntity<JsonResponseFormat>(response, HttpStatus.OK);
+    	} catch (Exception ex) {
+    		JsonResponseFormat response = new JsonResponseFormat(false, ex.getMessage());
+    		return new ResponseEntity<JsonResponseFormat>(response, HttpStatus.OK);
+    	}
+    }     
 }
+
+

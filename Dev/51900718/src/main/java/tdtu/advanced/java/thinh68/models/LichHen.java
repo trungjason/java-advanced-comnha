@@ -47,7 +47,7 @@ public  class LichHen {
     private int soLuongKhach;
     
     @Column(name = "thoi_gian")
-    public Timestamp thoiGian;
+    public String thoiGian;
     
     @Column(name = "ngay_hen")
     private Date ngayHen;

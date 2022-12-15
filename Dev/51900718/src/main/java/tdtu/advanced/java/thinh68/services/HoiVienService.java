@@ -22,9 +22,17 @@ public class HoiVienService {
     public void save(HoiVien product) {
     	hoiVienRepository.save(product);
     }
+    
+    public HoiVien saveWithReturn(HoiVien product) {
+    	return hoiVienRepository.save(product);
+    }
      
     public HoiVien get(long id) {
         return hoiVienRepository.findById(id).get();
+    }
+    
+    public HoiVien getHoiVienByPhoneNumber(String phoneNumber) {
+    	return hoiVienRepository.findBySoDienThoai(phoneNumber);
     }
      
     public void delete(long id) {
