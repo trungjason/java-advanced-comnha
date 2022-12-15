@@ -1,144 +1,130 @@
-@{
-    ViewData["Title"] = "Thêm nhân viên";
-    Layout = "~/Views/Shared/_Layout_Private.cshtml";
-}
 
-@section Stylesheets{
-    <link rel="stylesheet" href="~/css/private/staff.css">
-}
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<div class="staff-create">
-    <div class="title">
-        Thêm nhân viên
-        <span></span>
-    </div>
-    <div class="staff-create__content pt-2">
-        <a href="/comnha/staffs" class="text-danger">Trở lại</a>
+<head>
+<div
+	th:replace="/Shared/_Layout_Private :: private_layout_header(type='none')"></div>
+<link rel="stylesheet" th:href="@{/css/private/staff.css}">
+</head>
+<body>
+	<div th:replace="/Shared/Private/_Header :: header"></div>
+	<main role="main">
+		<div class="container my-5">
+			<div class="row">
+				<div class='col-xl-3'>
+					<div th:replace="/Shared/Private/_Sidebar :: sidebar"></div>
+				</div>
 
-        <form id="create-form" class="needs-validation pt-4" novalidate enctype="multipart/form-data" method="POST">
-            <div class="row">
-                <div class="col-12 col-lg-4">
-                    <div class="staff-create__img">
-                        <div class="staff-create__img-wrapper">
-                            <img id="staff-create__img-view" src="/images/avatar/unknown.jpg" alt="Avatar">
-                            <label for="staff-create__img-input">
-                                <i class="fa-solid fa-camera"></i>
-                            </label>
-                        </div>
+				<div class='col-12 col-sm-12 col-md-12 col-xl-9 '
+					style="margin-top: var(--header-height);">
 
-                        <div class="form-group">
-                            <input type="file" id="staff-create__img-input" class="form-control d-none" accept="image/*"
-                                name="image">
-                            <div class="invalid-feedback text-center mt-3">
-                                Vui lòng tải ảnh đại diện!
-                            </div>
-                        </div>
-                    </div>
-                </div>
+					<div class="staff-create">
+						<div class="title">
+							Thêm nhân viên <span></span>
+						</div>
+						<div class="staff-create__content pt-2">
+							<a href="/admin/staffs" class="text-danger">Trở lại</a>
 
-                <div class="col-12 col-lg-8 pl-lg-0">
-                    <div class="form-row">
+							<form id="create-form" class="needs-validation pt-4" novalidate
+								enctype="multipart/form-data" method="POST">
+								<div class="row">
+									<div class="col-12 col-lg-4">
+										<div class="staff-create__img">
+											<div class="staff-create__img-wrapper">
+												<img id="staff-create__img-view"
+													src="/images/avatar/unknown.jpg" alt="Avatar"> <label
+													for="staff-create__img-input"> <i
+													class="fa-solid fa-camera"></i>
+												</label>
+											</div>
 
-                        <div class="col-12 mb-2">
-                            <label class="mb-1" for="name">Họ và tên:</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên"
-                                required>
-                            <div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
-                        </div>
+											<div class="form-group">
+												<input type="file" id="staff-create__img-input"
+													class="form-control d-none" accept="image/*" name="image">
+												<div class="invalid-feedback text-center mt-3">Vui
+													lòng tải ảnh đại diện!</div>
+											</div>
+										</div>
+									</div>
 
-                        <div class="col-md-6 mb-2">
-                            <label class="mb-1" for="email">Email:</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email"
-                                required>
-                            <div class="invalid-feedback">Vui lòng nhập email!</div>
-                        </div>
+									<div class="col-12 col-lg-8 pl-lg-0">
+										<div class="form-row">
 
-                        <div class="col-md-6 mb-2">
-                            <label class="mb-1" for="phone">Số điện thoại:</label>
-                            <input type="number" class="form-control" id="phone" name="phone"
-                                placeholder="Nhập số điện thoại" required>
-                            <div class="invalid-feedback">Vui lòng nhập số điện thoại!</div>
-                        </div>
+											<div class="col-12 mb-2">
+												<label class="mb-1" for="name">Họ và tên:</label> <input
+													type="text" class="form-control" id="name" name="name"
+													placeholder="Nhập họ và tên" required>
+												<div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
+											</div>
 
-                        @*<div class="col-md-4 mb-2">
-                            <label class="mb-1" for="identity">CMND/CCCD:</label>
-                            <input type="text" class="form-control" id="identity" name="identity"
-                                placeholder="Nhập CMND/CCCD" required>
-                            <div class="invalid-feedback">Vui lòng nhập CMND hoặc CCCD!</div>
-                        </div>*@
+											<div class="col-md-6 mb-2">
+												<label class="mb-1" for="email">Email:</label> <input
+													type="email" class="form-control" id="email" name="email"
+													placeholder="Nhập email" required>
+												<div class="invalid-feedback">Vui lòng nhập email!</div>
+											</div>
 
- @*                       <div class="col-md-4 mb-2">
-                            <label class="mb-1" for="gender">Giới tính:</label>
-                            <select id="gender" class="custom-select" name="gender" required>
-                                <option value="">--Chọn giới tính--</option>
-                                <option value="male">Nam</option>
-                                <option value="female">Nữ</option>
-                            </select>
-                            <div class="invalid-feedback">Vui lòng chọn giới tính!</div>
-                        </div>*@
+											<div class="col-md-6 mb-2">
+												<label class="mb-1" for="phone">Số điện thoại:</label> <input
+													type="number" class="form-control" id="phone" name="phone"
+													placeholder="Nhập số điện thoại" required>
+												<div class="invalid-feedback">Vui lòng nhập số điện
+													thoại!</div>
+											</div>
 
-                        @*<div class="col-md-4 mb-2">
-                            <label class="mb-1" for="birthday">Ngày sinh:</label>
-                            <input type="date" class="form-control" id="birthday" name="birthday" required>
-                            <div class="invalid-feedback">Vui lòng chọn ngày sinh!</div>
-                        </div>*@
+											<div class="col-12 mb-2">
+												<label class="mb-1" for="address">Địa chỉ:</label> <input
+													type="text" class="form-control" id="address"
+													name="address" placeholder="Nhập địa chỉ" required>
+												<div class="invalid-feedback">Vui lòng nhập địa chỉ!</div>
+											</div>
 
-                        <div class="col-12 mb-2">
-                            <label class="mb-1" for="address">Địa chỉ:</label>
-                            <input type="text" class="form-control" id="address" name="address"
-                                placeholder="Nhập địa chỉ" required>
-                            <div class="invalid-feedback">Vui lòng nhập địa chỉ!</div>
-                        </div>
+											<div class="col-md-6 mb-2">
+												<label class="mb-1" for="salary">Mức lương:</label> <input
+													type="number" class="form-control" id="salary"
+													name="salary" placeholder="Nhập mức lương" required>
+												<div class="invalid-feedback">Vui lòng nhập mức lương!</div>
+											</div>
 
-                        <div class="col-md-6 mb-2">
-                            <label class="mb-1" for="salary">Mức lương:</label>
-                            <input type="number" class="form-control" id="salary" name="salary"
-                                placeholder="Nhập mức lương" required>
-                            <div class="invalid-feedback">Vui lòng nhập mức lương!</div>
-                        </div>
+											<div class="col-md-6 mb-2">
+												<label class="mb-1" for="role">Chức vụ:</label> <select
+													id="role" class="custom-select" name="role" required>
+													<option value="">--Chọn chức vụ--</option>
+													<option value="Quản Lý Nhà Hàng">Quản Lý Nhà Hàng</option>
+													<option value="Quản Lý Kho">Quản Lý Kho</option>
+													<option value="Lễ Tân">Lễ Tân</option>
+													<option value="Thu Ngân">Thu Ngân</option>
+													<option value="Phục Vụ">Phục Vụ</option>
+												</select>
+												<div class="invalid-feedback">Vui lòng chọn chức vụ!</div>
+											</div>
 
-                        <div class="col-md-6 mb-2">
-                            <label class="mb-1" for="role">Chức vụ:</label>
-                            <select id="role" class="custom-select" name="role" required>
-                                <option value="">--Chọn chức vụ--</option>
-                                <option value="Quản Lý Nhà Hàng">Quản Lý Nhà Hàng</option>
-                                <option value="Quản Lý Kho">Quản Lý Kho</option>
-                                <option value="Lễ Tân">Lễ Tân</option>
-                                <option value="Thu Ngân">Thu Ngân</option>
-                                <option value="Phục Vụ">Phục Vụ</option>
-                            </select>
-                            <div class="invalid-feedback">Vui lòng chọn chức vụ!</div>
-                        </div>
+											<div id="alert-message" class="text-danger d-none"
+												style="font-size: 100%; margin-top: 0.25rem; margin-bottom: 0.25rem; width: 100%">
+												Mật khẩu xác thực không trùng khớp!</div>
 
-                        @*<div class="col-md-4 mb-2">
-                            <label class="mb-1" for="branch">Chi nhánh:</label>
-                            <select id="branch" class="custom-select" name="branch" required>
-                                <option value="">--Chọn chi nhánh--</option>
-                                <option value="CN001">Hồ Chí Minh</option>
-                                <option value="CN002">Đà Nẵng</option>
-                                <option value="CN003">Hà Nội</option>
-                            </select>
-                            <div class="invalid-feedback">Vui lòng chọn chi nhánh!</div>
-                        </div>*@
-                    </div>
+											<div class="d-flex justify-content-end mt-2">
+												<button type="reset" class="btn btn-outline-primary mr-2"
+													id="reset-btn">Nhập lại</button>
+												<button type="submit" class="btn btn-outline-success">Xác
+													nhận</button>
+											</div>
+										</div>
+									</div>
+							</form>
+						</div>
+					</div>
 
-                    <div id="alert-message" class="text-danger d-none"
-                        style="font-size: 100%; margin-top: 0.25rem; margin-bottom: 0.25rem; width: 100%">
-                        Mật khẩu xác thực không trùng khớp!
-                    </div>
-                        
-                    <div class="d-flex justify-content-end mt-2">
-                        <button type="reset" class="btn btn-outline-primary mr-2" id="reset-btn">Nhập lại</button>
-                        <button type="submit" class="btn btn-outline-success">Xác nhận</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 
-@section Scripts{
-<script>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div th:replace="/Shared/Components/_GoToTop :: goToTop"></div>
+	<div th:replace="/Shared/Private/_Footer :: footer"></div>
+	<script th:src="@{/js/main.js}"></script>
+	<script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
         'use strict';
@@ -158,7 +144,7 @@
                 const staff_data = $("#create-form").serializeArray();
                 console.log(staff_data);
 
-                if ( staff_data.length != 7 ){
+                if ( staff_data.length != 6 ){
                     return;
                 }
 
@@ -179,7 +165,7 @@
                 }
 
                    
-                let API_URL = `https://localhost:5556/api/comnha/create-staff`;
+                let API_URL = `/admin/staffs/create-staff`;
                 const options = {
                     credentials: 'same-origin',
                     method: 'POST',
@@ -206,7 +192,6 @@
                     .then(result => {
                         console.log(result);
                         if ( result.status ){
-                            //window.location.href = "/comnha/staffs"
                             showSuccess(result.message);
                             form.reset();
                         } else {
@@ -262,4 +247,4 @@
         return /(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(number);
     }
 </script>
-}
+</body>

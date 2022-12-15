@@ -1,86 +1,117 @@
-@{
-    ViewData["Title"] = "Quản lý nhân viên";
-    Layout = "~/Views/Shared/_Layout_Private.cshtml";
-}
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-@section Stylesheets{
-<link rel="stylesheet" href="~/css/private/staff.css">
-}
-<div class="staff">
-    <div class="title">
-        Nhân viên
-        <span></span>
-    </div>
-    <div class="heading d-flex flex-column flex-md-row justify-content-md-between">
-        <a href="/comnha/staffs/create" type="button" class="btn btn-outline-success">Thêm nhân viên</a>
-        <div class="search d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
-            <label for="search-input">Tìm kiếm: </label>
-            <div class="search-wrapper">
-                <input id="search-input" class="search-input" type="text" placeholder="Nhập từ khóa">
-                <i class="fa-solid fa-magnifying-glass search-btn"></i>
-            </div>
-        </div>
-    </div>
-    <div class="content pt-5">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-light table">
-                <thead>
-                    <tr class="text-white" style="background-color: var(--primary-color);">
-                        <th style="min-width: 40px; width: 10%" class="text-center">ID</th>
-                        <th style="min-width: 200px; width: 30%" class="text-center">Họ và tên</th>
-                        <th style="min-width: 160px; width: 20%" class="text-center">Chức vụ</th>
-                        <th style="min-width: 180px; width: 20%" class="text-center">Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                                                  
-                </tbody>
-            </table>
-        </div>
-        <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-danger">Xem thêm</button>
-        </div>
+<head>
+<div
+	th:replace="/Shared/_Layout_Private :: private_layout_header(type='none')"></div>
+<link rel="stylesheet" th:href="@{/css/private/staff.css}">
+</head>
+<body>
+	<div th:replace="/Shared/Private/_Header :: header"></div>
+	<main role="main">
+		<div class="container my-5">
+			<div class="row">
+				<div class='col-xl-3'>
+					<div th:replace="/Shared/Private/_Sidebar :: sidebar"></div>
+				</div>
 
-        @if (ViewData.ContainsKey("ErrorStatus") && ViewData["ErrorStatus"] != null && (bool) ViewData["ErrorStatus"])
-        {
-            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                <strong>@ViewData["ErrorMessage"]</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-    </div>
-</div>
+				<div class='col-12 col-sm-12 col-md-12 col-xl-9 '
+					style="margin-top: var(--header-height);">
 
-<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label"
-  aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Xóa nhân viên?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-body__message">Bạn có chắc chắn muốn xóa nhân viên <strong id="deleted_name" class="text-danger"></strong> ?</p>
-            </div>
-            <div class="modal-footer">
-                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-            </div>
-        </div>
-    </div>
-</div>
+					<div class="staff">
+						<div class="title">
+							Nhân viên <span></span>
+						</div>
+						<div
+							class="heading d-flex flex-column flex-md-row justify-content-md-between">
+							<a href="/admin/staffs/create" type="button"
+								class="btn btn-outline-success">Thêm nhân viên</a>
+							<div
+								class="search d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
+								<label for="search-input">Tìm kiếm: </label>
+								<div class="search-wrapper">
+									<input id="search-input" class="search-input" type="text"
+										placeholder="Nhập từ khóa"> <i
+										class="fa-solid fa-magnifying-glass search-btn"></i>
+								</div>
+							</div>
+						</div>
+						<div class="content pt-5">
+							<div class="table-responsive">
+								<table
+									class="table table-bordered table-hover table-light table">
+									<thead>
+										<tr class="text-white"
+											style="background-color: var(--primary-color);">
+											<th style="min-width: 40px; width: 10%" class="text-center">ID</th>
+											<th style="min-width: 200px; width: 30%" class="text-center">Họ
+												và tên</th>
+											<th style="min-width: 160px; width: 20%" class="text-center">Chức
+												vụ</th>
+											<th style="min-width: 180px; width: 20%" class="text-center">Hành
+												động</th>
+										</tr>
+									</thead>
+									<tbody>
 
-<form id="delete-form" name="delete-form" method="POST">
-    <input type="hidden" name="deleted_staff_id" value="" />
+									</tbody>
+								</table>
+							</div>
 
-</form>
+							<div th:if="${message}">
+							<div class="alert alert-danger alert-dismissible fade show mt-3"
+								role="alert">
+								<strong>[[${message}]]</strong>
+								<button type="button" class="close" data-dismiss="alert"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
 
-@section Scripts{
-<script>
+		</div>
+	</main>
+
+	<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="delete-modal-label" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Xóa nhân viên?</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p class="modal-body__message">
+						Bạn có chắc chắn muốn xóa nhân viên <strong id="deleted_name"
+							class="text-danger"></strong> ?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button id="btn-confirm-delete" type="button"
+						class="btn btn-danger">Xác nhận</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Hủy</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form id="delete-form" name="delete-form" method="POST">
+		<input type="hidden" name="deleted_staff_id" value="" />
+	</form>
+
+	<div th:replace="/Shared/Components/_GoToTop :: goToTop"></div>
+	<div th:replace="/Shared/Private/_Footer :: footer"></div>
+	<script th:src="@{/js/main.js}"></script>
+	<script>
     $(document).ready(function () {
         const deleteForm = document.getElementById('delete-form')
         const btnDelete = document.getElementById('btn-confirm-delete')
@@ -98,7 +129,7 @@
         //When button delete clicked
         btnDelete.onclick = function () {
             const staffID = $("input[name='deleted_staff_id']").val();
-            let API_URL = `https://localhost:5556/api/comnha/delete-staff/${staffID}`;
+            let API_URL = `/admin/staffs/delete-staff/${staffID}`;
             const options = {
                 credentials: 'same-origin',
                 method: 'DELETE',
@@ -130,7 +161,7 @@
             })
         }
 
-        let API_URL = "https://localhost:5556/api/comnha/get-staffs";
+        let API_URL = "/admin/staffs/get-staffs";
           const options = {
             credentials: 'same-origin',
             method: 'GET',
@@ -159,14 +190,14 @@
 
                         staff_table += `<tr id="tr-${staff['maNhanVien']}">
                             <td class="text-center align-middle">
-                                <a href="/comnha/staffs/detail/${staff['maNhanVien']}" class="text-dark">${staff['maNhanVien']}</a>
+                                <a href="/admin/staffs/detail/${staff['maNhanVien']}" class="text-dark">${staff['maNhanVien']}</a>
                             </td>
                             <td class="text-center align-middle">
-                                <a href="/comnha/staffs/detail/${staff['maNhanVien']}" class="text-dark">${staff['tenNhanVien']}</a>
+                                <a href="/admin/staffs/detail/${staff['maNhanVien']}" class="text-dark">${staff['tenNhanVien']}</a>
                             </td>
                             <td class="text-center align-middle">${staff['chucVu']}</td>
                             <td class="text-center align-middle">
-                                <a href="/comnha/staffs/edit/${staff['maNhanVien']}" type="button" class="btn btn-outline-primary"
+                                <a href="/admin/staffs/edit/${staff['maNhanVien']}" type="button" class="btn btn-outline-primary"
                                     data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
@@ -186,4 +217,4 @@
 
     });
 </script>
-}
+</body>

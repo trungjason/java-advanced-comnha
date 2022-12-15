@@ -1,128 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-@{
-    ViewData["Title"] = "Chi tiết món ăn";
-    Layout = "~/Views/Shared/_Layout_Private.cshtml";
+<head>
+<div
+	th:replace="/Shared/_Layout_Private :: private_layout_header(type='none')"></div>
+<link rel="stylesheet" th:href="@{/css/private/food.css}">
+</head>
+<body>
+	<div th:replace="/Shared/Private/_Header :: header"></div>
+	<main role="main">
+		<div class="container my-5">
+			<div class="row">
+				<div class='col-xl-3'>
+					<div th:replace="/Shared/Private/_Sidebar :: sidebar"></div>
+				</div>
 
-    Monan food = ViewData["FoodDetail"] as Monan;
-    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
-}
+				<div class='col-12 col-sm-12 col-md-12 col-xl-9 '
+					style="margin-top: var(--header-height);">
+					
+					<div th:unless="${monan}" class="alert alert-warning">Món ăn không tồn tại</div>
 
-@section Stylesheets{
-    <link rel="stylesheet" href="~/css/private/food.css">
-}
-<div class="food-create">
-    <div class="title">
-        Chi tiết món ăn
-        <span></span>
-    </div>
-    <div class="food-create__content pt-2">
-        <a href="/comnha/foods/detail-group/@food.MaNhom" class="text-danger">Trở lại</a>
-        <form class="needs-validation pt-4" novalidate enctype="multipart/form-data" method="POST">
-            <div class="row">
+					<div th:if="${monan}" class="food-create">
+						<div class="title">
+							Chi tiết món ăn <span></span>
+						</div>
+						<div class="food-create__content pt-2">
+							<a th:href='${"/admin/foods/detail-group/" + monan.nhomMonAn.MaNhom}'
+								class="text-danger">Trở lại</a>
+							<form class="needs-validation pt-4" novalidate
+								enctype="multipart/form-data" method="POST">
+								<div class="row">
 
-                <div class="col-12 col-lg-4">
-                    <div class="food-create__img">
-                        <div class="food-create__img-wrapper">
-                            <img src="~/images/food-images/@food.HinhAnh" alt="Food">
-                            <label for="food-create__img-input">
-                                <i class="fa-solid fa-camera"></i>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+									<div class="col-12 col-lg-4">
+										<div class="food-create__img">
+											<div class="food-create__img-wrapper">
+												<img th:src="${'/images/food-images/' + monan.HinhAnh}" alt="Food">
+												<label for="food-create__img-input"> <i
+													class="fa-solid fa-camera"></i>
+												</label>
+											</div>
+										</div>
+									</div>
 
-                <div class="col-12 col-lg-8 px-0">
-                    <div class="form-row">
-     
-                        <div class="col-12 mb-2">
-                            <label class="mb-1" for="name">Tên món ăn:</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên món ăn"
-                                value="@food.TenMonAn" disabled readonly required>
-                            <div class="invalid-feedback">Vui lòng nhập tên món ăn!</div>
-                        </div>
-           
-                        <div class="col-md-6 mb-2">
-                            <label class="mb-1" for="unit">Đơn vị:</label>
-                            <input type="text" class="form-control" id="unit" name="unit" placeholder="Nhập đơn vị"
-                                value="@food.DonVi" disabled readonly required>
-                            <div class="invalid-feedback">Vui lòng nhập đơn vị!</div>
-                        </div>
-          
-                        <div class="col-md-6 mb-2">
-                            <label class="mb-1" for="price">Giá bán:</label>
-                            <input type="number" class="form-control" id="price" name="price"
-                                placeholder="Nhập giá bán" value="@food.DonGia" disabled readonly required>
-                            <div class="invalid-feedback">Vui lòng nhập giá bán!</div>
-                        </div>
-                   
-                        <div class="col-12 mb-2">
-                            <label class="mb-1" for="group">Nhóm món ăn:</label>
-                            <input id="group" class="form-control" name="group" value="@food.MaNhom" disabled readonly required>
-                            <div class="invalid-feedback">Vui lòng chọn nhóm món ăn!</div>
-                        </div>
-                     
-                        <div class="col-12 mb-2">
-                            <label class="mb-1" for="desc">Mô tả ngắn:</label>
-                            <input type="text" class="form-control" id="desc" name="desc"
-                                placeholder="Nhập mô tả ngắn" value="@food.MoTaNgan" disabled readonly required>
-                            <div class="invalid-feedback">Vui lòng nhập mô tả ngắn!</div>
-                        </div>
-                 
-                        <div class="col-12 mb-2">
-                            <label class="mb-1" for="desc-detail">Mô tả chi tiết:</label>
-                            <textarea type="text" class="form-control" id="desc-detail" name="desc-detail"
-                                placeholder="Nhập mô tả chi tiết" rows="5" disabled readonly required>@food.MoTa
+									<div class="col-12 col-lg-8 px-0">
+										<div class="form-row">
+
+											<div class="col-12 mb-2">
+												<label class="mb-1" for="name">Tên món ăn:</label> <input
+													type="text" class="form-control" id="name" name="name"
+													placeholder="Nhập tên món ăn" th:value="${monan.TenMonAn}"
+													disabled readonly required>
+												<div class="invalid-feedback">Vui lòng nhập tên món
+													ăn!</div>
+											</div>
+
+											<div class="col-md-6 mb-2">
+												<label class="mb-1" for="unit">Đơn vị:</label> <input
+													type="text" class="form-control" id="unit" name="unit"
+													placeholder="Nhập đơn vị" th:value="${monan.donVi}" disabled
+													readonly required>
+												<div class="invalid-feedback">Vui lòng nhập đơn vị!</div>
+											</div>
+
+											<div class="col-md-6 mb-2">
+												<label class="mb-1" for="price">Giá bán:</label> <input
+													type="text" class="form-control" id="price" name="price"
+													placeholder="Nhập giá bán" th:value="${#numbers.formatDecimal(monan.donGia, 0, 'POINT', 0, 'COMMA') + ' VNĐ'}" disabled
+													readonly required>
+												<div class="invalid-feedback">Vui lòng nhập giá bán!</div>
+											</div>
+
+											<div class="col-12 mb-2">
+												<label class="mb-1" for="group">Nhóm món ăn:</label> <input
+													id="group" class="form-control" name="group"
+													th:value="${monan.nhomMonAn.tenNhom}" disabled readonly required>
+												<div class="invalid-feedback">Vui lòng chọn nhóm món
+													ăn!</div>
+											</div>
+
+											<div class="col-12 mb-2">
+												<label class="mb-1" for="desc">Mô tả ngắn:</label> <input
+													type="text" class="form-control" id="desc" name="desc"
+													placeholder="Nhập mô tả ngắn" th:value="${monan.moTaNgan}"
+													disabled readonly required>
+												<div class="invalid-feedback">Vui lòng nhập mô tả
+													ngắn!</div>
+											</div>
+
+											<div class="col-12 mb-2">
+												<label class="mb-1" for="desc-detail">Mô tả chi
+													tiết:</label>
+												<textarea type="text" class="form-control" id="desc-detail"
+													name="desc-detail" placeholder="Nhập mô tả chi tiết"
+													rows="5" disabled readonly required>[[${monan.moTa}]]
                             </textarea>
-                            <div class="invalid-feedback">Vui lòng nhập mô tả chi tiết!</div>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-end mt-2">
-                        <a href="/comnha/foods/edit/@food.MaMonAn" class="btn btn-outline-primary mr-2">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            Sửa
-                        </a>
-                        <button type="button" class="btn btn-outline-danger" data-tooltip="tooltip"
-                            data-placement="top" title="Xóa" data-toggle="modal" data-id="@food.MaMonAn" data-img="" data-name="@food.TenMonAn"
-                            data-target="#delete-modal">
-                                <i class="fa-solid fa-trash-can"></i>
-                                Xóa
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+												<div class="invalid-feedback">Vui lòng nhập mô tả chi
+													tiết!</div>
+											</div>
+										</div>
+										<div class="d-flex flex-row justify-content-end mt-2">
+											<a th:href="${'/admin/foods/edit/' + monan.maMonAn}"
+												class="btn btn-outline-primary mr-2"> <i
+												class="fa-solid fa-pen-to-square"></i> Sửa
+											</a>
+											<button type="button" class="btn btn-outline-danger"
+												data-tooltip="tooltip" data-placement="top" title="Xóa"
+												data-toggle="modal" th:data-id="${ monan.maMonAn }" data-img=""
+												th:data-name="${ monan.tenMonAn }" data-target="#delete-modal">
+												<i class="fa-solid fa-trash-can"></i> Xóa
+											</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
 
 
-<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Xóa món ăn?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-body__message">Do you want to delete ?</p>
-            </div>
-            <div class="modal-footer">
-                <button id="btn-confirm-delete" type="button" class="btn btn-danger">Xác nhận</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-            </div>
-        </div>
-    </div>
-</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Xóa món ăn?</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p class="modal-body__message">Do you want to delete ?</p>
+				</div>
+				<div class="modal-footer">
+					<button id="btn-confirm-delete" type="button"
+						class="btn btn-danger">Xác nhận</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Hủy</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-<form id="delete-form" name="delete-form" method="POST">
-    <input type="hidden" name="deleted-food-id" value=""/>
-    <input type="hidden" name="deleted-group-food-id" value="@food.MaNhom"/>
-</form>
+	<form th:if="${monan}" id="delete-form" name="delete-form" method="POST">
+		<input type="hidden" name="deleted-food-id" value="" /> <input
+			type="hidden" name="deleted-group-food-id" th:value="${monan.nhomMonAn.maNhom}" />
+	</form>
 
-@section Scripts{
-<script>
+	<div th:replace="/Shared/Components/_GoToTop :: goToTop"></div>
+	<div th:replace="/Shared/Private/_Footer :: footer"></div>
+	<script th:src="@{/js/main.js}"></script>
+
+	<script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
         'use strict';
@@ -163,7 +196,7 @@
         btnDeleteCourse.onclick = function () {
             const deletedID = $("input[name='deleted-food-id']").val();
 
-            let API_URL = `https://localhost:5556/api/comnha/delete-food/${deletedID}`;
+            let API_URL = `/admin/foods/delete-food/${deletedID}`;
             const options = {
                 credentials: 'same-origin',
                 method: 'DELETE',
@@ -186,7 +219,7 @@
             .then(result => {
                 console.log(result);
                 if (result.status) {
-                    window.location.href = "/comnha/foods/detail-group/" + $("input[name='deleted-group-food-id']").val();
+                    window.location.href = "/admin/foods/detail-group/" + $("input[name='deleted-group-food-id']").val();
                 }
             })
             .catch(error => {
@@ -195,4 +228,5 @@
         }
     });
 </script>
-}
+
+</body>

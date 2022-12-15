@@ -16,11 +16,11 @@ public class NhanVienService {
 	private NhanVienRepository nhanVienRepository;
 
 	public List<NhanVien> listAll() {
-		return nhanVienRepository.findAll();
+		return nhanVienRepository.findAllByChucVuNotIgnoreCase("Quản lý nhà hàng");
 	}
 
-	public void save(NhanVien product) {
-		nhanVienRepository.save(product);
+	public NhanVien save(NhanVien product) {
+		return nhanVienRepository.save(product);
 	}
 
 	public NhanVien get(long id) {

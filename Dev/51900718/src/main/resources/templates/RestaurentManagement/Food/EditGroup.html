@@ -1,54 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-@{
-    ViewData["Title"] = "Sửa thông tin nhóm món ăn";
-    Layout = "~/Views/Shared/_Layout_Private.cshtml";
+<head>
+<div
+	th:replace="/Shared/_Layout_Private :: private_layout_header(type='none')"></div>
+<link rel="stylesheet" th:href="@{/css/private/food.css}">
+</head>
+<body>
+	<div th:replace="/Shared/Private/_Header :: header"></div>
+	<main role="main">
+		<div class="container my-5">
+			<div class="row">
+				<div class='col-xl-3'>
+					<div th:replace="/Shared/Private/_Sidebar :: sidebar"></div>
+				</div>
 
-    Nhommonan nhommonan = null;
-    if ( ViewData.ContainsKey("DetailFoodGroup") && ViewData["DetailFoodGroup"] != null)
-    {
-        nhommonan = ViewData["DetailFoodGroup"] as Nhommonan;
-    };
+				<div class='col-12 col-sm-12 col-md-12 col-xl-9 '
+					style="margin-top: var(--header-height);">
 
-   
-}
+					<div class="food-group-edit">
+						<div class="title">
+							Chỉnh sửa nhóm món ăn <span></span>
+						</div>
+						<div class="food-group-edit__content pt-2">
+							<a href="/admin/foods" class="text-danger">Trở lại</a>
+							<form id="update-form" class="needs-validation pt-4" novalidate
+								method="POST">
 
-@section Stylesheets{
-    <link rel="stylesheet" href="~/css/private/food.css">
-}
+								<input type="hidden" name="food-group-id"
+									th:value="${nhommonan.MaNhom}" />
 
-<div class="food-group-edit">
-    <div class="title">
-        Chỉnh sửa nhóm món ăn
-        <span></span>
-    </div>
-    <div class="food-group-edit__content pt-2">
-        <a href="/comnha/foods" class="text-danger">Trở lại</a>
-        <form id="update-form" class="needs-validation pt-4" novalidate method="POST">             
+								<div class="d-flex flex-column px-5">
+									<label class="mb-1" for="name">Tên nhóm món ăn:</label> <input
+										type="text" class="form-control" id="name" name="name"
+										placeholder="Nhập tên nhóm món ăn" autocomplete="off"
+										th:value="${nhommonan.TenNhom}" required>
+									<div class="invalid-feedback">Vui lòng nhập tên nhóm món
+										ăn!</div>
+								</div>
+								
+								<div class="d-flex flex-column px-5">
+									<label class="mb-1" for="desc">Mô tả:</label> <textarea
+										class="form-control" id="desc" name="desc"
+										placeholder="Nhập mô tả" autocomplete="off"
+										required>[[${nhommonan.moTa}]]</textarea>
+									<div class="invalid-feedback">Vui lòng nhập mô tả nhóm món
+										ăn!</div>
+								</div>
 
-            <input type="hidden" name="food-group-id" value="@nhommonan.MaNhom" />
+								<div id="alert-message" class="text-danger d-none"
+									style="font-size: 100%; margin-top: 0.25rem; margin-bottom: 0.25rem; width: 100%">
+									Mật khẩu xác thực không trùng khớp!</div>
 
-            <div class="d-flex flex-column px-5">
-                <label class="mb-1" for="name">Tên nhóm món ăn:</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên nhóm món ăn"
-                    autocomplete="off" value="@nhommonan.TenNhom" required>
-                <div class="invalid-feedback">Vui lòng nhập tên nhóm món ăn!</div>
-            </div>
+								<div class="d-flex flex-row justify-content-end mt-3 mr-5">
+									<button type="reset" class="btn btn-outline-secondary mr-2">Nhập
+										lại</button>
+									<button type="submit" class="btn btn-outline-success">Sửa</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 
-             <div id="alert-message" class="text-danger d-none"
-                style="font-size: 100%; margin-top: 0.25rem; margin-bottom: 0.25rem; width: 100%">
-                Mật khẩu xác thực không trùng khớp!
-            </div>
+	<div th:replace="/Shared/Components/_GoToTop :: goToTop"></div>
+	<div th:replace="/Shared/Private/_Footer :: footer"></div>
+	<script th:src="@{/js/main.js}"></script>
 
-            <div class="d-flex flex-row justify-content-end mt-3 mr-5">
-                <button type="reset" class="btn btn-outline-secondary mr-2">Nhập lại</button>
-                <button type="submit" class="btn btn-outline-success">Sửa</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-@section Scripts{
-<script>
+	<script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
         'use strict';
@@ -69,7 +90,7 @@
                         return;
                     }
                   
-                    let API_URL = `https://localhost:5556/api/comnha/edit-food-group`;
+                    let API_URL = `/admin/foods/edit-food-group`;
                     const options = {
                         credentials: 'same-origin',
                         method: 'PUT',
@@ -80,7 +101,8 @@
                         },
                         body: JSON.stringify({
                             maNhom: foodGroupData[0]["value"],
-                            tenNhom: foodGroupData[1]["value"]
+                            tenNhom: foodGroupData[1]["value"],
+                            moTa: foodGroupData[2]["value"]
                         })
                     }
 
@@ -126,4 +148,5 @@
         alert.html(message);
     }
 </script>
-}
+
+</body>

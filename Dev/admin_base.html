@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<div
+	th:replace="/Shared/_Layout_Private :: private_layout_header(type='none')"></div>
+<link rel="stylesheet" th:href="@{/css/private/food.css}">
+</head>
+<body>
+	<div th:replace="/Shared/Private/_Header :: header"></div>
+	<main role="main">
+		<div class="container my-5">
+			<div class="row">
+				<div class='col-xl-3'>
+					<div th:replace="/Shared/Private/_Sidebar :: sidebar"></div>
+				</div>
+
+				<div class='col-12 col-sm-12 col-md-12 col-xl-9 '
+					style="margin-top: var(--header-height);">
+					
+					
+					</div>
+			</div>
+		</div>
+	</main>
+
+	<div th:replace="/Shared/Components/_GoToTop :: goToTop"></div>
+	<div th:replace="/Shared/Private/_Footer :: footer"></div>
+	<script th:src="@{/js/main.js}"></script>
+</body>
