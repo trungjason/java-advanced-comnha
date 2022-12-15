@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -39,17 +40,19 @@ public class KhachHang {
     @Column(name="ten_khach_hang", nullable = false)
     private String tenKhachHang;
     
-    @Column(name="dia_chi", nullable = false)
+    @Column(name="dia_chi", nullable = true)
     private String diaChi;
     
-    @Column(name="email", nullable = false)
+    @Column(name="email", nullable = true)
     private String email;
     
-    @JsonManagedReference
+
     @OneToMany(mappedBy="khachHang")
+    @JsonIgnore
     private List<LichHen> khachHang_LichHens;
     
-    @JsonManagedReference
+
     @OneToMany(mappedBy="khachHang")
+    @JsonIgnore
     private List<HoaDon> khachHang_HoaDons;
 }

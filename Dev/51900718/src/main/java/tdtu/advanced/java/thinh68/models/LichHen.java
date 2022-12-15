@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +33,7 @@ import lombok.ToString;
 @Setter
 @Builder
 @Table(name="lich_hen")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public  class LichHen {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -57,7 +60,6 @@ public  class LichHen {
     @JoinColumn(name = "lich_hen_ban_an_foreign_key", referencedColumnName="ma_ban_an")
     private BanAn banAn;
 
-    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lich_hen_khach_hang_foreign_key", referencedColumnName="ma_khach_hang", nullable = false)
     private KhachHang khachHang;
