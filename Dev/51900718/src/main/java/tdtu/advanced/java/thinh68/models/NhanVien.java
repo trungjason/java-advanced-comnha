@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -63,17 +64,21 @@ public class NhanVien {
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "nhanVien")
+	@JsonIgnore
 	private List<LichHen> nhanVien_LichHens;
 
 	@JsonManagedReference	
 	@OneToMany(mappedBy = "nhanVien")
+	@JsonIgnore
 	private List<PhieuGoiMon> nhanVien_PhieuGoiMons;
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "nhanVien")
+	@JsonIgnore
 	private List<PhieuNhap> nhanVien_PhieuNhaps;
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "nhanVien")
+	@JsonIgnore
 	private List<HoaDon> nhanVien_HoaDons;
 }

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
@@ -35,8 +37,9 @@ public class HoaDon {
 	@Column(name = "ma_hoa_don")
 	private Long maHoaDon;
 
-	@Column(name = "thoi_gian_thanh_toan", nullable = false)
-	private Timestamp thoiGianThanhToan;
+	@Column(name = "thoi_gian_thanh_toan", nullable = true)
+	@CreationTimestamp
+	private Timestamp thoiGianThanhToan; 
 
 	@Column(name = "tong_tien", nullable = false)
 	private double tongTien;

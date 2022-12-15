@@ -74,7 +74,7 @@ $('.checkouts-member-btn').click(function () {
     const memberID = memberInputElement.val();
 
     if (memberID) {
-        $.get(`https://localhost:5556/ComNha/MemberInfo/${memberID}`, function (data) {
+        $.get(`http://localhost:8080/api/member-info/${memberID}`, function (data) {
             if (data) {
                 console.log(data);
                 memberIDValid = data['soDienThoai'];
@@ -146,7 +146,7 @@ function handelFormCheckoutsSubmit() {
                     const method = $('#checkouts-method').find(":selected").text();
 
                     $.ajax({
-                        url: "https://localhost:5556/ComNha/DatMonTrucTuyen",
+                        url: "http://localhost:8080/api/order-online",
                         type: "POST",
                         data: JSON.stringify({
                             name,

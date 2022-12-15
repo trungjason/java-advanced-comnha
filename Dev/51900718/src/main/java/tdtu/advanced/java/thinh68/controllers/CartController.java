@@ -12,6 +12,6 @@ public class CartController {
 	@GetMapping("/cart")
     public String index(Model model) {
     	model.addAttribute("pageTitle", "Giỏ hàng");
-        return "Cart/index";
+        return "Cart/index"; 
     }
 }

@@ -22,6 +22,10 @@ public class HoaDonService {
     public void save(HoaDon product) {
     	hoaDonRepository.save(product);
     }
+    
+    public HoaDon saveWithReturnModel(HoaDon product) {
+    	return hoaDonRepository.save(product);
+    }
      
     public HoaDon get(long id) {
         return hoaDonRepository.findById(id).get();

@@ -22,6 +22,10 @@ public class PhieuGoiMonService {
     public void save(PhieuGoiMon product) {
     	phieuGoiMonRepository.save(product);
     }
+    
+    public PhieuGoiMon saveWithReturn(PhieuGoiMon product) {
+    	return phieuGoiMonRepository.save(product);
+    }
      
     public PhieuGoiMon get(long id) {
         return phieuGoiMonRepository.findById(id).get();

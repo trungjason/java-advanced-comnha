@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -45,9 +46,11 @@ public  class BanAn {
     	
     @JsonManagedReference
     @OneToMany(mappedBy = "banAn")
+    @JsonIgnore
     private List<LichHen> banAn_LichHens;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "banAn")
+    @JsonIgnore
     private List<PhieuGoiMon> banAn_PhieuGoiMons;
 }

@@ -34,22 +34,22 @@ function handleFormBookSubmit() {
                 const phone = $("#book-phone").val();
                 const isValidPhone = isVietnamesePhoneNumber(phone);
                 if (isValidPhone) {
-                    const name = $("#book-name").val();
-                    const quantity = $("#book-quantity").val();
-                    const date = $("#book-date").val();
-                    const time = $("#book-time").val();
-                    const note = $("#book-note").val();
+                    const tenKhachHang = $("#book-name").val();
+                    const soLuongKhach = parseInt($("#book-quantity").val());
+                    const ngayHen = $("#book-date").val();
+                    const thoiGian = $("#book-time").val();
+                    const nhuCau = $("#book-note").val();
 
                     $.ajax({
-                        url: "https://localhost:5556/Book/DatBan",
+                        url: "http://localhost:8080/api/book",
                         type: "POST",
                         data: JSON.stringify({
-                            name,
-                            phone,
-                            quantity,
-                            date,
-                            time,
-                            note,
+                            tenKhachHang,
+                            soDienThoai: phone,
+                            soLuongKhach,
+                            ngayHen,
+                            thoiGian,
+                            nhuCau,
                         }),
                         dataType: "json",
                         contentType: "application/json; charset=utf-8",

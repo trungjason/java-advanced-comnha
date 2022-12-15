@@ -17,21 +17,21 @@
 				<div class="row">
 					<div class="col-12 col-sm-8 offset-sm-2">
 						<div class="book-title">Đặt bàn</div>
-						<form class="needs-validation book-form mt-4" novalidate>
+						<form action="#" th:action="@{/book}" method="post" class="needs-validation book-form mt-4" novalidate>
 							<div class="form-group mb-4">
-								<input type="text" class="form-control" id="book-name"
+								<input type="text" th:field="${khachHang.tenKhachHang}" class="form-control" id="book-name"
 									placeholder="Họ tên của bạn *" required>
 								<div class="invalid-feedback ml-1">Bạn chưa nhập họ tên</div>
 							</div>
 							<div class="form-row">
 								<div class="col-md-6 mb-4">
-									<input type="text" class="form-control" id="book-phone"
+									<input type="text" th:field="${khachHang.soDienThoai}" class="form-control" id="book-phone"
 										placeholder="Số điện thoại của bạn *" maxlength="11" required>
 									<div class="invalid-feedback ml-1">Bạn chưa nhập số điện
 										thoại</div>
 								</div>
 								<div class="col-md-6 mb-4">
-									<select id="book-quantity" class="form-control" required>
+									<select  id="book-quantity" class="form-control" required>
 										<option value="">Chọn số người *</option>
 										<option value="2">2 người</option>
 										<option value="4">4 người</option>
@@ -46,12 +46,12 @@
 							</div>
 							<div class="form-row">
 								<div class="col-md-6 mb-4">
-									<input type="date" class="form-control" id="book-date"
+									<input type="date" th:field="${lichHen.ngayHen}" class="form-control" id="book-date"
 										placeholder="Chọn ngày *" required>
 									<div class="invalid-feedback ml-1">Bạn chưa chọn ngày</div>
 								</div>
 								<div class="col-md-6 mb-4">
-									<select id="book-time" class="form-control" required>
+									<select th:field="${lichHen.thoiGian}" id="book-time" class="form-control" required>
 										<option value="">Chọn giờ *</option>
 										
 										<option th:each="hour : ${#numbers.sequence( 9, 21, 1)}" th:value="${hour + ':00'}" th:text="${hour + ':00'}" >
@@ -64,7 +64,7 @@
 								</div>
 							</div>
 							<div class="form-group mb-4">
-								<textarea type="text" class="form-control" id="book-note"
+								<textarea th:field="${lichHen.nhuCau}" type="text" class="form-control" id="book-note"
 									rows="6" placeholder="Ghi chú"></textarea>
 							</div>
 
