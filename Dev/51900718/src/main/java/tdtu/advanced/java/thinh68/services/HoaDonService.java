@@ -1,5 +1,6 @@
 package tdtu.advanced.java.thinh68.services;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,11 @@ public class HoaDonService {
     public HoaDon get(long id) {
         return hoaDonRepository.findById(id).get();
     }
-     
+    
+    public List<HoaDon> thongKe(Timestamp fromTime, Timestamp toTime) {
+        return hoaDonRepository.findByThoiGianThanhToanBetween(fromTime, toTime);
+    }
+       
     public void delete(long id) {
     	hoaDonRepository.deleteById(id);
     }

@@ -39,7 +39,7 @@ import tdtu.advanced.java.thinh68.services.TaiKhoanService;
 @Controller
 @RequestMapping(value = { "Admin", "admin" })
 public class AdminController {
-	@Autowired
+	@Autowired 
 	private NhomMonAnService nhomMonAnService;
 	@Autowired
 	private TaiKhoanService taiKhoanService;
@@ -101,7 +101,7 @@ public class AdminController {
 
 		session.invalidate();
 		return "redirect:/admin";
-	}
+	} 
 
 	@GetMapping("/staffs")
 	public String staffs(HttpSession session, Model model) {

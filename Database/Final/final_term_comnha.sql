@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2022 at 04:30 PM
+-- Generation Time: Dec 16, 2022 at 09:55 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -252,6 +252,13 @@ CREATE TABLE `nhan_vien` (
   `nhan_vien_tai_khoan_forgein_key` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `nhan_vien`
+--
+
+INSERT INTO `nhan_vien` (`ma_nhan_vien`, `email`, `anh_dai_dien`, `chuc_vu`, `dia_chi`, `luong`, `so_dien_thoai`, `ten_nhan_vien`, `nhan_vien_tai_khoan_forgein_key`) VALUES
+(2, 'phon@gmail.com', NULL, 'Quản lý nhà hàng', '20/22 Trần Duy Hưng, Hà Nội', 696996, '0312345678', 'Trần A Phón', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -337,6 +344,14 @@ CREATE TABLE `tai_khoan` (
   `mat_khau` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ten_tai_khoan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tai_khoan`
+--
+
+INSERT INTO `tai_khoan` (`ma_tai_khoan`, `mat_khau`, `ten_tai_khoan`) VALUES
+(1, '$2y$10$GMxWvYTnfP0ansHCeAKwOO4AqHjoN.SOzjXjnh5JMeyz/nNTXF3CC', 'admin'),
+(2, '$2a$10$OzZ1N78Fw29IT1aHYUBgROoSkS.JdwBtCUhv0oSXOsAvO7P3KfUEK', 'phon@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -502,7 +517,7 @@ ALTER TABLE `nguyen_vat_lieu`
 -- AUTO_INCREMENT for table `nhan_vien`
 --
 ALTER TABLE `nhan_vien`
-  MODIFY `ma_nhan_vien` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ma_nhan_vien` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `nha_cung_cap`
@@ -532,7 +547,7 @@ ALTER TABLE `phieu_nhap`
 -- AUTO_INCREMENT for table `tai_khoan`
 --
 ALTER TABLE `tai_khoan`
-  MODIFY `ma_tai_khoan` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ma_tai_khoan` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
